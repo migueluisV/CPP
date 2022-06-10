@@ -1,0 +1,3 @@
+﻿  Flujo_de_datos_(FormatException).cpp
+D:\Mis Documentos\Visual Studio 2019\Projects\Flujo_de_datos_(FormatException)\Flujo_de_datos_(FormatException)\Flujo_de_datos_(FormatException).cpp(72,20): warning C4101: 'e': variable local sin referencia
+  Flujo_de_datos_(FormatException).vcxproj -> D:\Mis Documentos\Visual Studio 2019\Projects\Flujo_de_datos_(FormatException)\Debug\Flujo_de_datos_(FormatException).exe

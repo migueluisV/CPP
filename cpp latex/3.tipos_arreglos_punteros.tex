@@ -1,0 +1,205 @@
+\section{Tipos de datos}
+Los tipos de datos son un identificador de las variables que se crean en C++, con estas, se puede dar un uso apropiado a cada variable, qué puede ser almacenado en estas y qué operaciones se pueden realizar. Existe una forma legal e ilegal de utilizar los tipos de datos, y es simplemente que no pueden realizar operaciones entre tipos de datos distintos, no se puede sumar la palabra texto al número 5. El tamaño de cada tipo de dato depende de la arquitectura del sistema en la cual el programa se ejecuta, por lo general, 4 bytes es el tamaño mínimo en las arquitecturas modernas.
+
+\subsubsection{Tipo numérico}
+Este tipo de dato incluye:
+\begin{itemize}
+    \item \textbf{Enteros (interger)}: son todos aquellos números no fraccionarios, los cuales pueden ser positivos o negativos, para utilizar un valor entero se usa la palabra abreviada \textbf{int}, el tamaño utilizado para \textit{int} por defecto es de 4 a 8 bytes. También podemos modificar el tipo int, haciendo que reciba solamente valores positivos, ambos, que pueda contener valores más pequeños o más grandes, como lo muestran los siguientes puntos:
+    \begin{itemize}
+        \item \textbf{signed}: entero que acepta positivos y negativos ($-\infty, 0, \infty$).
+        \item \textbf{unsigned}: entero que solo acepta positivos (0, ..., $\infty$).
+        \item \textbf{short}: la mitad del tamaño por defecto (2 bytes).
+        \item \textbf{long}: el doble del tamaño por defecto (8 bytes).
+    \end{itemize}
+    \begin{center}
+        \textit{int a = 5;}\\
+        \textit{unsigned short int b = -1;}\\
+        \textit{long int c = 555666777;}
+    \end{center}
+    \item \textbf{Punto flotante (float)}: son todos aquellos números que poseen un punto decimal, suelen ser del tipo \textit{signed}, lo cual significa que automáticamente acepta valores positivos y negativos, su tamaño por defecto es de 4 bytes, pero también existen otros dos tipo de punto flotante:
+    \begin{itemize}
+        \item \textbf{double}: una versión más grande de \textit{float}, de 8 bytes de tamaño
+        \item \textbf{long}: una versión más grande de \textit{double}, para ser exactos, \textit{long} equivale a dos doubles, por lo cual, long tiene un tamaño de 16 bytes.
+    \end{itemize}
+\end{itemize}
+\begin{center}
+    \textit{float var1 = 420.0;\\
+            double var2 = -3.33;\\
+            long var3 = 0.035546;}
+\end{center}
+
+\subsection{Tipo cadena y caracteres}
+Este tipo está conformado por números, caracteres o símbolos:
+\begin{itemize}
+    \item \textbf{Cadena (string)}: consiste en una una serie de símbolos, letras, caracteres o números uno tras otro, formando frases o palabras. Estas cadenas se ponen entre dos comillas (\textbf{" "}). Este tipo de dato se encuentra dentro del cabecera \textbf{$<$string$>$}, que a su vez esta se encuentra dentro de \textit{iostream}, por lo que si ya se trabaja con iostream, no es necesario volver a escribir la cabecera string.\begin{center}\textit{string nombre = "Luis";}\end{center}
+    \item \textbf{Un carácter (character)}: consiste en un solo símbolo o letra de 1 byte de tamaño, representando como un carácter ASCII, encerrado entre una sola comilla (' ').\begin{center}\textit{char letra = 'a';}\end{center}
+\end{itemize}
+
+\subsection{Tipo booleano}
+Este tipo simplemente puede tener dos valores: \textbf{true} (verdadero, 1) o \textbf{false} (falso, 0).
+\begin{center}
+    \textit{bool online = true;\\
+            bool loggeado = 0 //Adquiere valor de false}
+\end{center}
+
+
+
+\section{Arreglos}
+Un \textbf{arreglo} (también llamado \textbf{vector}) es una colección de datos del mismo tipo bajo el mismo nombre, podemos pensar a los arreglos como un grupo de variables con el mismo nombre, pero distinto valor, en vez de crear 10 variables con el mismo nombre, pero diferenciándolos con un contador, se puede crear un arreglo de 10 espacios para almacenar 10 valores. Cuando se crea un arreglo, debes darle un tipo de dato, un nombre significativo y un número entero de valores que puede recibir encerrado entre corchetes (\textbf{[]}).\begin{center}\textit{int a[5]; //Arreglo de tipo entero llamado a con 5 espacios para recibir valores}\end{center}
+Así como una variable puede ser inicializada, un arreglo también, después de crearlo, podemos darle valores (dependiendo del tipo de dato), separados por comas y encerrados entre llaves. Sin embargo, también podemos inicializar un arreglo como se acaba de describir, pero sin indicar el número de espacios que van a recibir valores dentro de los corchetes, a continuación se muestran ejemplos de como se inicializan los arreglos, ambos son el mismo pero inicializados de distinta manera:
+\begin{center}
+    \textit{int b[3] = \{1, 22, 333\};\\
+            int b[] = \{1, 22, 333\};}
+\end{center}
+\textit{Nota}: si el arreglo tiene 3 espacios para valores y se desea iniciar dicho arreglo, a la hora de escribir valores entre las llaves, no debe superar el número de espacios que se indicó en la creación del arreglo, sino, causará un error.\begin{center}\textit{int c[2] = \{32, 101, 4, 5\} //Esto está mal}\end{center}
+Cuando se crea un arreglo, supongamos, de 10 espacios, cada uno tiene un \textbf{índice}, con este índice, podemos utilizar los valores contenidos en el arreglo. Este índice comienza con el valor 0 (un arreglo de 10 valores tiene valores de índice del 0 al 9). Para acceder a los valores contenidos dentro del arreglo, utilizamos su nombre, seguido de corchetes, y dentro de estos, el índice del valor que estamos buscando.
+\begin{lstlisting}
+    int main(){
+        int arreglo[3] = {1, 2, 3}; //Índices: {0, 1, 2}
+        cout << arreglo[2] //Despliega: 3
+        return 0;
+    }
+\end{lstlisting}
+
+\subsection{Arreglos en ciclos}
+Podemos utilizar un ciclo para asignarle valores a cada índice un arreglo. Hay que ser precavido con esto, ya que, si el ciclo se va a repetir 5 veces, y nuestro arreglo tiene 5 espacios, la variable del ciclo debe comenzar en 0 y la condición que evalúa el ciclo debe ser igual a 5 menos 1 (para el operador $<$=) o 5, pero el operador tiene que ser obligatoriamente $>$, ya que los índices de un arreglo también comienzan en 0, si la variable del ciclo tiene un valor de 5, esto estaría fuera de los límites del índice del arreglo (5$>$4), lo cual lanzaría un error.
+\begin{lstlisting}
+    int (){
+        int x;
+        int arreglo[5];
+        for (x = 0; x <= 4; x++){
+            arreglo[x] = x;
+            cout >> arreglo[x];
+        }
+        
+        return 0;
+    }
+\end{lstlisting}
+
+\subsection{Arreglos multidimensionales}
+Los arreglos pueden tener \textbf{más de una dimensión, o más de un índice}, a esto se le llama \textbf{arreglos multidimensionales}. Los más comunes son los de dos (como una tabla) y tres dimensiones (como un cubo), la sintaxis a continuación:
+\begin{center}
+    \textit{[tipo de dato][nombre] [n. de espacios][n. de espacios]...[n. de espacios];\\
+            string nombres[2][4]; //Ejemplo}
+\end{center}
+Para visualizar como es un arreglo bidimensional, tenemos la siguiente tabla: está compuesta de dos filas y cuatro columnas.
+\begin{table}[ht]
+    \begin{center}
+        \caption{Representación de un arreglo bidimensional}
+        \label{tab: 5}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            &\textbf{Columna1}&\textbf{Columna2}&\textbf{Columna3}&\textbf{Columna4} \\ \hline
+            Fila1&Índice[0][0]&Índice[0][1]&Índice[0][2]&Índice[0][3] \\ \hline
+            Fila2&Índice[1][0]&Índice[1][1]&Índice[2][2]&Índice[3][3] \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+Para inicializar un arreglo bidimensional (y de aquí podemos tomar como ejemplo otros arreglos multidimensionales), debemos seguir lo siguiente:
+\begin{lstlisting}
+    int inicializacion[3][3] = {
+        {1, 2, 3}, //1ra fila
+        {4, 5, 6}, //2da fila
+        {7, 8, 9} //3ra fila
+    };
+    //O se puede hacer así también
+    int inicializacion2[3][2] = {{1, 2}, {3, 4}, {5, 6}};
+\end{lstlisting}
+Si queremos acceder a los valores dentro de un arreglo multidimensional, se aplica la misma filosofía de utilizar índices que con un arreglo de una sola dimensión:\begin{center}\textit{int x[2][2] = \{\{1, 2\}\{3, 4\}\};\\cout \textless\textless x[0][1];}\end{center}
+
+
+
+\section{Introducción a los Punteros}
+Un \textbf{puntero} es una forma de referirse a la dirección de memoria física definida que tiene una variable, para mostrarla en pantalla, se debe poner el símbolo \& seguido del nombre de la variable en cuestión. Un puntero puede ser tratado como una variable con ciertos atributos, los cuales son: \textbf{la dirección} y \textbf{el contenido} del puntero.\\
+Para contemplar qué es un puntero, podemos pensar que tenemos una caja, esta caja está ubicada en alguna parte de un cuarto, y por supuesto que esta caja tiene algo contenido adentro, puede ser cualquier cosa, un \textit{puntero} puede ser una persona que sabe donde está esa caja y cual es su contenido, es así que, si buscamos saber qué hay dentro de la caja y dónde está ubicada, podríamos ir nosotros directamente, o podríamos preguntarle a esta persona dónde está la caja y qué tiene adentro; este pequeño pensamiento nos sirve para poder diferencia entre variables y punteros.\\
+Un puntero puede crearse como una variable, es decir, dándole un tipo de dato y un nombre, para hacerlo, debemos escribir un \textbf{asterisco (*)} después del tipo de dato, entre el tipo de dato y el nombre del puntero o después del nombre de la variable. El tipo de dato de un puntero es un \textit{long} y, si un puntero apunta a una variable, ambos deben de ser del mismo tipo, un puntero \textit{char} no puede apuntar a una variable \textit{string}.
+\begin{lstlisting}
+    int* puntero1;
+    int *puntero1;
+    int puntero3*; //Tres formas de declarar un puntero
+\end{lstlisting}
+Para poder asignarle la referencia de una variable a un puntero, se utiliza el operador \textbf{\&} previo al nombre de una variable en una asignación de puntero, como lo muestra el siguiente ejemplo:
+\begin{lstlisting}
+    int main(){
+        int* aPuntero; //Puntero tipo int
+        int a; //Declaración de variable int
+        
+        aPuntero = &a; //Al puntero aPuntero se le asigna la dirección de memoria física de la variable a (referencia)
+    
+        return 0;
+    }
+\end{lstlisting}
+Además del símbolo \& para acceder a la dirección de memoria de una variable (\textbf{Dirección-de}), el símbolo * da acceso al valor contenido en la variable puntero (\textbf{Contenido-de}). El siguiente código explica un poco estos conceptos:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    int main(){
+        int* puntero1;
+        int *puntero1;
+        int puntero3*; //Tres formas de declarar un puntero
+    
+        int a; //Declara variable int
+    
+        puntero = &a; //Crea puntero del tipo int que apunta a la variable a
+    
+        cout << "Contenido de a: " << *puntero1 << "\n"; //Despliega el contenido de la variable a la que apunta
+        cout << "Dirección de memoria: " << puntero1 << "\n"; //Despliega la dirección de memoria física de la variable a la que apunta
+        
+        return 0;
+    }
+\end{lstlisting}
+
+
+
+\section{Memoria dinámica}
+C++ administra su memoria en dos partes: \textbf{El stack (pila o memoria estática)} es aquel espacio de memoria de donde las variables comunes (variables dentro de funciones o procedimientos, dentro de main y globales) son guardadas, este espacio de memoria suele ser bastante reducido, por lo que aquí se suelen presentar las excepciones por \textit{desbordamiento de pila}, y \textbf{El heap (montón)}, que es una sección de memoria sin utilizar que se puede tomar cuando el programa es ejecutado, así asignando dinámicamente la memoria. El conocer estas dos categorías nos permite pensar en como es que utilizamos la memoria para nuestro programa, y el impacto que esto tiene a la hora de ejecutarlo (tiempo de carga). Por otra parte, la memoria heap (ahora llamada dinámica) nos permite darle un valor dinámico a nuestras variables, en especial a los arreglos, ya que un problema concurrente con estos últimos es que no podemos cambiar el valor de los espacios que puede utilizar (se establece en la compilación y durante la ejecución no se puede alterar).\\
+La memoria dinámica es trabajada por medio de \textbf{punteros}, cuando a una variable se asigna a la memoria dinámica, lo que recibe esta variable es una dirección de memoria física, por lo que debemos tener un puntero a la mano para manipular esta variable. Las palabras reservadas dedicadas a esta memoria son \textbf{new} y \textbf{delete}. Podemos verlo distinto definiendo los tipos de memorias con otras palabras:
+\begin{itemize}
+    \item Memoria stack, pila o estática: es aquella que se establece durante el compilado y no se puede alterar en la ejecución.\begin{center}\textit{int vector[50];}\end{center}
+    \item Memoria pseudo estática: es aquella que se establece por medio de la entrada de un dato por parte del usuario, se compila y no se puede alterar durante la ejecución.
+    \begin{center}
+        \textit{int N;\\
+        cout $<<$ "N: ";\\
+        int vector[N];}
+    \end{center}
+    \item Memoria heap o dinámica: es utilizada mediante \textit{punteros}, se establece durante el compilado y puede ser alterado durante la ejecución.\begin{center}\textit{int* vector = new int[N];\\//Código\\delete[] vector;\\vector = null;}\end{center}
+\end{itemize}
+Una buena practica es crear punteros e inicializarlos a valor \textit{null}, utlizar el la instrucción \textit{delete} después de utilizarlos (con o sin el uso de memoria dinámica) y volver a asignales un valor \textit{null}.
+
+
+
+\section{El operador sizeof()}
+Como se dijo previamente, el tamaño de cada tipo de dato varia de la arquitectura de la computadora en la que se está trabajando, pero C++ ofrece un mínimo de tamaño para cada tipo de dato que ofrece, este operador se puede utilizar también para variables de cierto tipo de dato.\begin{center}\textit{sizeof(tipo de dato)}\end{center}
+La siguiente tabla muestra los el mínimo tamaño ofrecido por C++:
+\begin{table}[ht]
+    \begin{center}
+        \caption{Tamaños mínimos de los tipos de datos}
+        \label{tab: 6}
+        \begin{tabular}{m{3cm} m{3cm} m{3cm}}
+            \hline
+            \textbf{Categoría}&\textbf{Tipo}&\textbf{Tamaño mínimo} \\
+            \hline
+            \multirow{4}{3cm}{integer}&short&2 bytes \\
+            &int&2 bytes \\
+            &long&4 bytes \\
+            &long long&8 bytes \\ \hline
+            \multirow{3}{3cm}{floating point}&float&4 bytes \\
+            &double&8 bytes \\
+            &long double&8 bytes \\ \hline
+            character&char&1 byte \\ \hline
+            boolean&bool&1 byte \\
+            \hline
+        \end{tabular}
+    \end{center}    
+\end{table}
+Este mismo operador es útil para conocer el \textbf{tamaño de bytes de un arreglo}, simplemente lo declaramos (no es necesario asignarle valores) del tipo que deseemos, y dentro del operador sizeof, escribimos el nombre del arreglo. También podemos conocer el número de elementos que tiene un arreglo utilizando sizeof del arreglo entre el número de bytes que representa el tipo de dato del arreglo:
+\begin{lstlisting}
+    int a[10]; //Arreglo int, tiene un tamaño de 2 bytes
+    double b[10]; //Arreglo double, tiene un tamaño de 8 bytes
+    
+    cout << sizeof(a) << endl; //Despliega 20, que es 2 bytes por los 10 espacios del arreglo
+    cout << sizeof(b) << endl; //Despliega 80, que es 8 bytes por los 10 espacios del arreglo
+    cout << sizeof(b) / 8 << endl; //Despliega 10, que es el tamaño de los bytes del arreglo (80) entre los 10 espacios
+\end{lstlisting}

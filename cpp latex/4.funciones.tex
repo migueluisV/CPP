@@ -1,0 +1,268 @@
+\section{Funciones}
+Una \textbf{función} es un bloque de código que puede ser llamado dentro de otra sección del código para realizar una tarea en específico. Las ventajas de las funciones es que puede crear las tuyas que hagan una determinada tarea que requieras, además de que estas funciones son reutilizables y puedes probarlas cada una individualmente.\\
+Toda función tiene la siguiente estructura:
+\begin{lstlisting}
+    [Tipo de dato] [Nombre] ([Parámetro1], [Parámetro2], ..., [ParámetroN])
+    {
+        //Código
+        return [Variable o expresión del mismo tipo de dato de la función]
+    }
+\end{lstlisting}
+Los parámetros no son precisamente obligatorios, se ponen para fines de establecer la estructura de una función, lo que si es requerido es que la instrucción \textbf{return} regrese un resultado, variable o expresión del mismo tipo que sea la función, sino había un error.\\
+En ocasiones, las funciones no regresarían un valor, simplemente cumplen con una tarea, es decir, regresan un vacío, a este tipo de funciones se le llaman \textbf{procedimientos} y su estructura es la siguiente:
+\begin{lstlisting}
+    void [Tipo de dato] [Nombre] ([Parámetro1], [Parámetro2], ..., [ParámetroN])
+    {
+        //Código
+    }
+\end{lstlisting}
+Para llamar y ejecutar una función o procedimiento se tiene que haber creado previo a su utilización, debemos simplemente escribir el nombre de la función o procedimiento, seguido del inicio y cierre de paréntesis, y punto y coma.
+\begin{lstlisting}
+    void Despliegue()
+    {
+        cout << "Hola mundo";
+    }
+    
+    int main()
+    {
+        Despliegue(); //Despliega "Hola mundo";
+        
+        return 0;
+    }
+\end{lstlisting}
+Una \textbf{función prototipo} consiste en la declaración simple de una función o procedimiento, pero sin darle un bloque de código a ejecutar, es como declarar una variable y no inicializarla, con esto, podemos crear \textit{funciones prototipo}, llamarlas en el \textit{main}, y darles un cuerpo o bloque a dichas funciones por debajo de main o en otra ubicación que deseemos.
+\begin{lstlisting}
+    void Despliegue1(); //Prototipo de procedimientos
+    void Despliegue2();
+    
+    int main()
+    {
+        Despliegue1(); //Despliega "Hola mundo"
+        Despliegue2(); //Despliega "Hola mundo"
+        
+        return 0;
+    }
+    
+    void Despliegue1()
+    {
+        cout << "Hola mundo1";
+    }
+    
+    void Despliegue2()
+    {
+        cout << "Hola mundo2";
+    }
+\end{lstlisting}
+
+\subsection{Con parámetros}
+Si somos más específicos, una función puede tener \textbf{argumentos}, y los valores que le pasamos a dichos argumentos se llaman \textbf{parámetros}, entonces, para que una función o procedimiento tenga argumentos, debemos seguir la siguiente estructura:
+\begin{lstlisting}
+    void Despliegue([tipo de dato] [nombre])
+    {
+        //Código
+    }
+\end{lstlisting}
+El siguiente ejemplo muestra un procedimiento que acepta un argumento y, en su llamada, le pasamos un parámetro:
+\begin{lstlisting}
+    void Despliegue(string mensaje)
+    {
+        cout << mensaje;
+    }
+    
+    int main()
+    {
+        string mensaje = "que tal";
+        Despliegue(mensaje); //Despliega "que tal";
+        
+        return 0;
+    }
+\end{lstlisting}
+Si bien un \textit{procedimiento} no regresa un valor y realiza una tarea sin más, una función si regresa un valor, y este valor puede ser asignado a una variable, como si se tratase de una asignación cualquiera, siempre y cuando sean del mismo tipo de dato. Además, la instrucción \textit{return} puede modificar el argumento que recibe la función para devolverlo alterado:
+\begin{lstlisting}
+    int Multiplicacion(int x)
+    {
+        return x*10;
+    }
+    
+    int main()
+    {
+        int numero;
+        numero = Multiplicacion(10); //La función le asigna a la variable el valor 10 multiplicado por 10
+        
+        return 0;
+    }
+\end{lstlisting}
+
+\subsubsection{Argumentos predeterminados}
+Una función o procedimiento puede argumentos con \textbf{valores predeterminados}, esto quiere decir que, si le hablamos a la función o procedimiento, y a esta no le pasamos ningún parámetro que corresponda con su argumento en la estructura de la función, esta misma asumirá que dicho argumento tiene asignado su valor por defecto, esto aplica para funciones y procedimientos con n argumentos.
+\begin{lstlisting}
+    int Suma(int x, int y, int z = 5) //El valor predeterminado del argumento z es 5
+    {
+        return x + y + z;
+    }
+    
+    int main()
+    {
+        int resultado1 = Suma (1, 2, 3); //Llama a Suma y le pasa tres parámetros
+        int resultado2 = Suma(2, 2); //Llama a Suma y le pasa dos parámetros
+        
+        cout << "Resultado  1: " << resultado1 << endl; //Despliega 6
+        cout << "Resultado  2: " << resultado2 << endl; // Despliega 9
+    }
+\end{lstlisting}
+
+
+\subsection{Con múltiples parámetros}
+Le puedes poner tantos argumentos como uno desee, separados por comas , siempre y cuando cada argumento tenga su tipo de dato y nombre. Para llamar a la función o procedimiento, se sigue la misma lógica que tiene el llamar una función con un solo parámetro, si tiene varios, se separan por una coma. 
+\begin{lstlisting}
+    int Multiplicacion(int x, int y, int z)
+    {
+        return x+y+z;
+    }
+    
+    int main()
+    {
+        int numero;
+        numero = Multiplicacion(10, 20, 30); //La función le asigna a la variable el valor 10 más 20 más 30
+        cout << numero;
+        
+        return 0;
+    }
+\end{lstlisting}
+
+\subsection{Arreglos como parámetros}
+Una función o procedimiento también \textbf{arreglos} como argumento, basta con indicarle al argumento un tipo de dato, un nombre identificativo y los corchetes (sin ningún contenido dentro de ellos).\begin{center}\textit{void DespliegueArreglo(int arreglo[], int size) \{\}}\end{center}
+Para llamar a la función o procedimiento y pasarle como parámetro un arreglo, debemos escribir (en su correspondiente argumento) el nombre del arreglo sin los corchetes, C++ reconoce que es un arreglo y asume todos sus valores sin poner los corchetes. A continuación se presenta un ejemplo en código:
+\begin{lstlisting}
+    void DesplegarArreglo(int arreglo[], int size)
+    {
+        int i;
+        
+        for (i = 0; i < size; i++)
+        {
+            cout << arreglo[i] << endl;
+        }
+    }
+    
+    int main()
+    {
+        int tam, i;
+        
+        cout << "Tamaño del arreglo: ";
+        cin >> tam;
+        
+        int arr[tam];
+        
+        for (i = 0; i < tam; i++)
+        {
+            arreglo[i] = i;
+        }
+        
+        DesplegarArreglo(arr, tam);
+    }
+\end{lstlisting}
+
+\subsection{Punteros como referencias}
+Por defecto, C++ tiene por defecto el pase de valores por parámetro hacías las funciones y procedimientos, pero existen otra forma de pasarle un parámetro a una función o procedimiento:
+\begin{itemize}
+    \item \textbf{Por valor}: lo que pasa cuando se le manda valor por parámetro a la función o procedimiento es que, desde donde se llama, se copia el valor del argumento (variable) local y dicha copia se le pasa como parámetro a la función o procedimiento, por lo que ambos quedan totalmente separados y dentro de la función, se le puede hacer lo que quiera al valor obtenido por parámetro (es como una copia de un archivo, el orinal queda intacto, mientras que la copia la puedes modificar como desees).
+    \item \textbf{Por referencia}: contrario a lo expuesto anteriormente, en vez de realizar una copia del argumento (variable) local, se crea una referencia de él la cual pasa como parámetro a la función o procedimiento, dentro de esta, lo que se le haga a la referencia afectará a su origen (es como el acceso directo a un archivo).
+\end{itemize}
+El pase por valor ya lo conocemos, es que usualmente se utiliza. El \textbf{pase por referencia funciona} debido a que esta referencia es la dirección de memoria del argumento que se le pase a la función o procedimiento por parámetro, recordemos que una dirección de una variable contiene su valor también, es por ello que, cuando se modifica un valor pasado por referencia dentro de la función, este también se ve modificado desde su origen.\\
+Creando un procedimiento que acepte parámetros por referencia, debemos utilizar \textit{punteros} para ello, estos deben estar indicados en la estructura del procedimiento o función, con su tipo de dato y el operador * (que indica la declaración de un puntero). Cuando llamamos a la función, simplemente le pasamos la dirección de la variable a la que apunta el puntero (con el símbolo \textbf{\&}). Refresquemos la memoria y lo leído con el siguiente ejemplo:
+\begin{lstlisting}
+    void Funcion(int *x) //El parámetro de esta función es un puntero llamado x del tipo int
+    {
+        *x = 100; //El * antes del nombre del puntero establece el valor del mismo
+    }
+    
+    int main()
+    {
+        int variable = 25; //Variable local del tipo int
+        Funcion(&variable); //Le pasamos la referencia de variable local, la función le asigna el valor de 100 y después se despliega
+        cout << variable;
+    
+        return 0;
+    }
+\end{lstlisting}
+De manera general, el uso de parámetros por valor es más efectivo, rápido y requiere menos memoria, a diferencia del pase por referencia, además, evitamos tener que pensar en alterar el valor original de la variable que pasó su valor por referencia con el pase por valor.
+
+\subsection{Sobrecarga de funciones}
+\textbf{Sobrecargar una función o procedimiento} permite duplicar dichas funciones y procedimientos, pero con distintos parámetros, para ejecutar las mismas tareas pero con ligeras variaciones. Es preferible que estos procedimientos sobrecargados se diferencien por medio de distintos tipos de datos para los argumentos, la cantidad de los mismos, y la adición o recorte de alguna instrucción en su bloque de código.
+\begin{lstlisting}
+    void Suma(int x, int y)
+    {
+        int resultado = x + y;
+        cout << resultado;
+    }
+    
+    void Suma(float x, float y)
+    {
+        float resultado = x + y;
+        cout << resultado;
+    }
+
+    int main()
+    {
+        Suma(1, 2);
+        Suma (3.14, 5.66);
+    }
+\end{lstlisting}
+Un error casual a la hora de ejecutar esto, es que se quieran sobrecargar funciones solamente cambiando su tipo de dato que devuelve, pero manteniendo tipos de argumentos y cantidad de los mismos similares.
+\begin{lstlisting}
+    int Despliegue (int a) { }
+    float Despliegue (int b) { }
+    double Despliegue (int c) { }
+\end{lstlisting}
+
+\subsection{La función rand()}
+Generar números aleatorios nos permite probar distintas funciones o códigos, C++ requiere de la cabecera \textbf{cstdlib} para poder acceder a la función \textbf{rand()}.\begin{center}\textit{\#include $<$cstdlib$>$}\end{center}
+Algo que se debe de saber es que estos números aleatorios son pseudoaleatorios, esto quiere decir, en C++, una vez se termine la ejecución y se vuelva a ejecutar, los números que anteriormente aparecieron, volverán a aparecer, además. estos números son enteros.\\
+Podemos hacer que los números generados por \textit{rand()} estén contenidos dentro de un rango, para ello, utilizamos el operador \textbf{modulo (\%)} y la siguiente estructura:
+\begin{lstlisting}
+    #include <cstdlib> //Cabecera para utilizar la función rand()
+    
+    int main()
+    {
+        int numero = rand(); //Se le asigna a la variable un número aleatorio
+        int numerorango = 1 + (rand() % 6); //Se le asigna a la variable un número aleatorio entre el 1 y el 6
+        
+        cout << numero << ", " << numero rango << endl;
+    }
+\end{lstlisting}
+
+\subsubsection{La función srand()}
+Esta función te permite \textbf{generar auténticos} números aleatorios. Esta función permite que se le pase un valor especial como parámetro, el cual es utilizado por la función \textit{rand()}, este valor es un tipo de "fuente", de la cual rand toma valores aleatorios; si se pone un número fijo, realmente no pasa nada y no se generan números aleatorios auténticos, en cambio, si ponemos una fuente que esté constantemente cambiando su valor, podríamos utilizar y considerar esto como valores aleatorios reales, por ejemplo, la función \textbf{time()}, el siguiente ejemplo explica lo escrito:
+ç\begin{lstlisting}
+    #include <ctime> //Cabecera que acepta el tiempo actual del sistema
+
+    int main()
+    {
+        srand(time(0)); //El tiempo actual del sistema con parámetro 0 (segundos), es el valor especial del cual rand() obtendrá sus valores
+        
+        for (int i = 1; i <= 10; i++)
+        {
+            cout << 1 + (rand() % 6) << endl;
+        }
+        
+        return 0;
+    }
+\end{lstlisting}
+
+\subsection{Funciones recursivas}
+Una \textbf{función recursiva} es aquella que se llama a sí misma, al igual que con los \textit{ciclos while}, se debe escribir una condición o expresión de salida, para evitar un recursión indefinida.\\
+La condición o expresión de salida suele llamarse \textbf{el caso base}, el cual hace que se evite una recursión infinita. Existen muchos ejemplos donde podemos utilizar estas funciones, como lo puede ser la famosa función matemática \textbf{factorial}, ejemplificaremos las funciones recursivas con este caso:
+\begin{lstlisting}
+    int factorial(int n)
+    {
+        if (n == 1)
+            return 1;
+        else
+            return n * factorial(n - 1);
+    }
+    
+    int main()
+    {
+        cout << factorial(5); //Despliega 5 * 4, 4 * 3, 3 * 2, 2 * 1, 1
+    }
+\end{lstlisting}

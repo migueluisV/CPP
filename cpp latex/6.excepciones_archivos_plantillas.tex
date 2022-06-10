@@ -1,0 +1,279 @@
+\section{Plantillas (Templates)}
+
+\subsection{Funciones plantilla}
+Las \textbf{funciones plantilla} son utilizadas como base para repetir una tarea básica sin importar las variables y los tipos de estas. Esto aplica para casos donde debemos realizar operaciones matemáticas básicas, por ejemplo, una suma, podríamos crear una función que regrese la suma de x valores, pero dichos valores deben ser de un único tipo de dato, si quisiéramos utilizar esa función para otro tipo distinto de dato, no podríamos, la solución seria sobrecargar la función pero cambiando los tipos de datos a los que se necesiten.
+\begin{lstlisting}
+    int Suma(int x, int y){
+        return x + y;
+    }
+    
+    double Suma(dobule x, double y){
+        return x + y;
+    }
+\end{lstlisting}
+Para crear una función plantilla que represente la operación Suma para todos los tipos de datos numéricos que posee C++, utilizamos la palabra reservada \textbf{template}, seguido del \textbf{tipo de definición}:\begin{center}\textit{template <class T>}\end{center}
+Lo que significa el contenido entre los \textbf{$< >$} es que se creará una clase (un tipo de dato) del tipo \textbf{T}, el tipo \textit{T} es un tipo de dato genérico, es decir que, no representa ningún tipo de dato alguno, los representa a todos en general; se usa el nombre T porque podemos interpretar el funcionamiento de este como una variable, el tipo de dato genérico que creemos puede tener el nombre que gustemos, para efectos de este documento y de la fuente donde se estudió, se usa T.
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    template <class T>  T Suma (T x, T y){ //Declaración de la plantilla de función con su tipo genérico
+        return x + y;
+    }
+    
+    int main(){
+        cout << Suma(1,1) << endl; //Despliega 2;
+        cout << Suma(3.14, 2.56) ; //Despliega 5.7
+        
+        return 0;
+    }
+\end{lstlisting}
+El ejemplo anterior logra que podamos usar la misma función Suma para cualquier tipo de dato. Una alternativa a escribir una declaración de plantilla, es usando la palabra \textbf{typename}:\begin{center}\textit{template<typename T>}\end{center}
+
+\subsection{Plantillas de funciones con múltiples parámetros}
+En caso de que se quieran utilizar más de un tipo genérico en la plantilla, se puede lograr por medio de utilizar la misma lógica que crear argumentos de una función con distinto tipos de datos:\begin{center}\textit{int Operaciones(int x, double y) - T Suma(A x, B y) }\end{center}
+Con lo anterior, resolvemos el problema de querer sumar dos tipos de datos numéricos distintos (con la plantilla de función con un único tipo genérico, ocurriría un error de compilación)
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    template <typename A, typename B>  A Suma (A x, B y){ //Declaración de la plantilla de función con dos tipos genéricos
+        return a + b;
+    }
+    
+    B Menor(A a, B b){ //Declaración de la función con tipos genéricos; regresa un resultado tipo B
+        return (a < b ? a : b);
+    }
+    
+    int main(){
+        int a = 5;
+        double b = 4.666; //Declaración de variables
+        cout << Suma(1,1) << "\n"; //Despliega 2;
+        cout << Suma(3, 2.56) << "\n"; //Despliega 5.56
+        cout << Menor(a, b) << << "\n"; //Despliega a
+        
+        return 0;
+    }
+\end{lstlisting}
+
+\subsection{Plantillas de clases}
+Así como hay funciones, se pueden crear clases plantilla con funciones o atributos de un tipo genérico.\begin{center}\textit{template$<$typename A$>$\\class MiClase\{\};}\end{center}
+El siguiente ejemplo es una clase que tiene atributos y una función de un tipo genérico A en el mismo archivo donde está \textbf{main()}:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    template<typename A> class Numeros{ //Declaración de la plantilla de clase con un tipo genérico
+        private:
+            A x, y; //Atributos privados del tipo genérico A
+        public:
+            Numeros(A x, A y) : first(a), second(b){} //Constructor público que inicializa los atributos
+            
+            A Mayor(){ //Función que regresa un tipo de dato genérico
+                return (x > y ? x : y);
+            }
+    };
+\end{lstlisting}
+Sin embargo, podemos recordar que las clases pueden crearse en archivos separados (\textbf{.h, .cpp}); en el archivo cabecera, se declaran todos los atributos, procedimientos y funciones, en el archivo fuente, se desarrollan dichas declaraciones o prototipos, recordemos que se utiliza una sintaxis especial para desarrollar el prototipo de una función o procedimiento:\begin{center}\textit{void Auto :: Mover()\{\}\\int Auto :: Kilometraje()\{\}}\end{center}
+Entonces, para crear una clase plantilla con más de un dato genérico, debemos declarar la plantilla en ambos archivos, y especificar el dato genérico en las funciones miembros al inicio y después del nombre de la clase, encerrado entre \textbf{$< >$}, de la clase. 
+\begin{lstlisting}
+    //Archivo .h
+    #ifndef NUMEROS_H
+    #declare
+    
+    template<typename A> class Numeros{ //Declaración de la plantilla de clase con un tipo genérico
+        private:
+            A x, y; //Atributos privados del tipo genérico A
+        public:
+            Numeros(A a, A b){} //Declaración del constructor público
+            A Mayor(){} //Prototipo de una función que regresa un tipo de dato genérico
+    };
+    
+    #endif
+    
+    //Archivo .ccp
+    #include <iostream>
+    #include "Numeros.h"
+    using namespace std;
+    
+    template<typename A> //Declaración de la plantilla de clase con un tipo genérico
+    
+    Numeros :: Numeros(A x, A y) : first(a), second(b){} //Constructor público que inicializa los atributos
+    A Numeros<A> :: Mayor(){ //Función que regresa un tipo de dato genérico
+        return (x > y ? x : y);
+    }
+\end{lstlisting}
+El tipo de dato genérico encerrado entre $<>$ corresponde a que, cuando crees un objeto de la clase plantilla, debemos indicarle el tipo de dato que se le va a pasar a los tipos de datos genéricos; es como pasarle un tipo de dato como parámetro a una clase.
+\begin{lstlisting}
+    #include <iostream>
+    #include "Numeros.h"
+    using namespace std;
+    
+    int main(){
+        Numeros<int> obj1(10, 100); //Crea objeto Numeros que recibe el tipo int
+        obj1.Mayor(); //Despliega 100
+        
+        Numeros<double> obj2(3.14, 2.56); //Crea objeto Numeros que recibe el tipo double
+        obj2.Mayor(); //Despliega 3.14
+    }
+\end{lstlisting}
+
+\subsection{Plantillas especializadas}
+Otro enfoque que se le dan a las plantillas, es que podemos hacer que nuestra clase o función plantilla, reaccione distinto si le pasa un tipo de dato específico, ya que como bien sabemos, las funciones y clases plantilla funcionan para todos los tipos de datos. El siguiente ejemplo corresponde a una clase plantilla que despliega el parámetro que se le pasa al constructor:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    template <typename A> class MiClase{ //Declaración de la plantilla de clase con un tipo genérico
+        public:
+            MiClase(A x){ //Constructor público que despliega el parámetro genérico que se le pase
+                cout << x << " no es un char.\n";
+            }
+    };
+\end{lstlisting}
+Para hacer que una clase plantilla se comporte distinto con un tipo de dato específico, debemos de escribir \textbf{template $< >$} después del bloque de código de la declaración de la clase plantilla, después tenemos que escribir de vuelta todo el bloque de código de la clase, pero con unos cambios:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    template <typename A> class MiClase{ //Declaración de la plantilla de clase con un tipo genérico
+        public:
+            MiClase(A x){ //Constructor público que despliega el parámetro genérico que se le pase
+                cout << x << " no es un char.\n";
+            }
+    };
+    
+    template < > class MiClase<char>{
+    //Declaración de una plantilla especializada de clase, debemos dejar un espacio entre los < >
+    //Declaración de la clase plantilla, pero con un tipo de dato específico como parámetro
+        public:
+            MiClase(char x){ //Constructor público de la plantilla de clase especializada que despliega el parámetro char que se le pase
+                cout << x << " es un char.\n";
+            }
+    }; //Lleva punto y coma al finalizar la declaración
+\end{lstlisting}
+Si queremos que nuestras clases o funciones plantilla se comporten distinto con un tipo de dato, debemos dejar ese espacio entre los $< >$ y en la declaración de la clase, debemos darle como parámetro el tipo que buscamos. Podemos pensar en las plantillas especializadas como una \textbf{sobrecarga de plantillas}.\begin{center}\textit{Plantillas especializadas == Sobrecarga de plantillas}\end{center}
+Las plantillas genéricas \textbf{no heredan} sus miembros, por lo que, cada plantilla especializada debe volver a declarar constructores, funciones, atributos y el destructor. En el main, se crean los objetos de las clases plantilla:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    int main(){
+        MiClase<int> entero(10); //Despliega 10 no es char
+        MiClase<string> cadena("hola"); //Despliega hola no es char
+        MiClase<dobule> flotante(3.1416); //Despliega 3.1416 no es char
+        MiClase<char> caracter('1'); //Despliega  1 es un char
+        
+        return 0;
+    };
+\end{lstlisting}
+
+
+
+\section{Excepciones}
+Una \textbf{excepción} es un problema que ocurre durante la ejecución de un programa, es un error que no estaba contemplado en el código pero que el compilador no es capaz de detectar, como dividir entre cero, insertar un valor en la posición 20 de un arreglo cuando este tiene solo 5 posiciones, ingresar una cadena a un tipo entero, etc. Se utilizan las siguientes palabras reservadas:
+\begin{itemize}
+    \item \textbf{try}: funciona para detectar, en un bloque de código un error que pueda ocurrir durante la ejecución de un programa.
+    \item \textbf{catch}: se encarga de detectar las excepciones que puedan ocurrir durante la ejecución, en caso de detectar un rango fuera de un índice de arreglo, lanza un mensaje, en caso de detectar error de formato en una variable, lanza otro mensaje, esto quiere decir que una instrucción \textit{try} puede tener más de un catc\textit{catch}.
+    \item \textbf{throw}: funciona para lanzar algún mensaje de error en caso de que una condición o expresión se dé durante la ejecución del programa.
+\end{itemize}
+Ahora un ejemplo:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    int main{
+        int EdadMadre, EdadHijo; //Declaración de variables
+        try{ //Instrucción try que detecta excepciones
+            cin >> EdadMadre >> EdadHijo; //Asignación de valores a las variables
+            if (EdadHijo > EdadMadre){ //Si la edad del hijo es mayor a la de la madre
+                throw 99; //Lanza una excepción en valor entero que recibe catch
+            }
+        }
+        catch(int x){ //La excepción en valor entero la recibe catch, y la despliega
+            cout << "Imposible que el hijo sea mayor que la madre. Error " << x << "\n"; //Despliega Imposible que el hijo sea mayor que la madre. Error 99
+        }
+        
+        return 0;
+    };
+\end{lstlisting}
+
+
+
+\section{Trabajando con archivos}
+El lenguaje C++ también da la posibilidad de escribir y leer archivos externos, al igual que C\#, debemos utilizar una librería adicional, en este caso, llamada \textbf{fstream}.\begin{center}\textit{\#include <fstream>}\end{center}
+Esta librería genera tres tipos de datos:
+\begin{itemize}
+    \item \textbf{ofstream}: permite crear y escribir información en variables.
+    \item \textbf{ifstream}: permite la lectura de información de archivos.
+    \item \textbf{fstream}: variable general, permite las características de las dos variables anteriores.
+\end{itemize}
+Para leer o escribir un archivo, se debe primero abrirlo, si no existe en la ubicación dada, se crea uno automáticamente utilizando la función \textbf{open()}, y si se deja de trabajar con este, se utiliza el comando \textbf{close()}, como lo muestra el siguiente ejemplo:
+\begin{lstlisting}
+    #include <iostream>
+    #include <fstream> //Cabecera para escribir y leer archivos
+    using namespace std;
+    
+    int main(){
+        ofstream Prueba; //Declaración de variable para crear y escribir un archivo
+        Prueba.open("prueba.txt"); //Se abre el archivo a trabajar
+        Prueba << "Algún texto\n"; //Se escribe en el archivo
+        Prueba.close(); //Se cierra el archivo
+        
+        return 0;
+    }
+\end{lstlisting}
+De igual forma, podemos instanciar el objeto \textit{ofstream} pasándole directamente el nombre y dirección del archivo a abrir:\begin{center}\textit{ofstream Prueba("prueba.txt")}\end{center}
+Para corroborar que un archivo está abierto o si se tiene el permiso para acceder a este, podemos utilizar la función \textbf{is\_open()}, la cual se asegura de que si podamos usar el archivo. Algo más que podemos agregar a esto, es el hecho de que la función \textit{open()} puede recibir parámetros especiales para el manejo del archivo que se va a abrir, si se requiere más de un parámetro, se pueden separar por medio de $|$, como lo muestra la siguiente tabla:
+\begin{table}[h]
+    \begin{center}
+        \caption{Parámetros especiales de open()}
+        \label{tab: 9}
+        \begin{tabular}{l l}
+            \hline
+            \textbf{Parámetro}&\textbf{Definición} \\
+            \hline
+            ios::app&Realiza operaciones al final del archivo \\
+            ios::ate&Va al final del archivo al abrirlo \\
+            ios::binary&Abre el archivo en \textbf{modo binario} \\
+            ios::in&Abre el archivo para solo lectura \\
+            ios::out&Abre el archivo para escritura solamente \\
+            ios::trunc&Borra el contenido del archivo si es que existe \\
+        \end{tabular}
+    \end{center}
+\end{table}
+\begin{lstlisting}
+    #include <iostream>
+    #include <fstream> //Cabecera para escribir y leer archivos
+    using namespace std;
+    
+    int main(){
+        ofstream Prueba("Prueba2.txt", ios::out | ios::trunc); //Declaración de variable para crear y escribir un archivo con parámetros de solo escritura y truncado
+        if (Prueba.is_open()){ //Verifica si existe el archivo
+            Prueba << "Soy el archivo, estoy abierto y escribes en mi\n"; //Se escribe en el archivo
+        }
+        else{
+            cout << "Algo salió mal\n"; //Mensaje de error
+        }
+        
+        return 0;
+    }
+\end{lstlisting}
+Para leer un archivo existente, se utiliza la función \textbf{getline} junto al siguiente código:
+\begin{lstlisting}
+    #include <iostream>
+    #include <fstream> //Cabecera para escribir y leer archivos
+    using namespace std;
+    
+    int main(){
+        string linea; //Declaración de variable para ir escribiendo linea a linea el contenido del archivo
+        ofstream Prueba; //Declaración de variable para crear y escribir un archivo
+        Prueba.open("prueba3.txt"); //Se abre el archivo a trabajar
+        while (getline(Prueba, linea)){ //Mientras a linea se le asignen lineas de texto de Prueba, el ciclo continuará escribiendo el valor de linea
+            cout << linea << "\n";
+        }
+        Prueba.close(); //Se cierra el archivo
+        
+        return 0;
+    }
+\end{lstlisting}

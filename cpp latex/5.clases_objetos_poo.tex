@@ -1,0 +1,916 @@
+\section{Clases}
+
+\subsection{Concepto de clases}
+Una \textbf{clase} es la base u origen de los objetos, si bien sabemos que cada objeto tiene características, conductas y son distintos cada objeto de otro, aunque consideremos que son "iguales" (recordando el ejemplo de las manzanas más arriba), las clases son lo que le dan dichas características y conductas a los objetos, podemos pensar a las clases como \textit{planos} de los objetos, con el plano de una cosa, podemos crear dicha cosa múltiples veces, lo mismo pasa con las clases, una clase tiene un \textit{nombre}, le agregas atributos y métodos (funciones y procedimientos), y de esa clase puedes crear objetos y darles valores a dichos atributos y métodos, los cuales definirán el estado de cada objeto.\\
+Los \textbf{métodos} son el comportamiento de cada objeto, un método dentro de una clase puede compararse a lo que son las funciones o procedimientos, es decir, ambos son bloques de código que realizan una tarea en específico y pueden ser llamados, pero las funciones están contenidas en una clase.\\
+Sabemos que una clase es la base de los objetos, las clases le proporcionan a cada objeto su identidad, atributos y comportamientos, podemos verlo un poco más claro con el siguiente ejemplo:
+
+\textit{Queremos una clase para crear distintos objetos que son automóviles de distinto tipo, sabemos que los autos pueden variar de pequeños, medianos, grandes, camiones, motos, etcétera; además de que todos poseen un color, marca, modelo, entre más cosas, y su comportamiento regular es que se muevan y detengan; con esta información, podemos crear una clase como la siguiente:}
+\begin{center}
+    \textbf{Nombre}: Auto\\
+    \textbf{Atributos}: Tipo, Marca, Modelo, Color\\
+    \textbf{Comportamiento}: Mover(), Detener()
+\end{center}
+Con esta clase hecha, podemos crear distintos objetos que representen una motocicleta, un automóvil para dos personas, una camioneta, un camión, entre otros. El proceso de creación de un objeto a partir de una clase se le llama \textbf{instanciación}, y una vez que el objeto es creado, a este también se le puede llamar \textbf{instancia}.\\
+Ahora que tenemos una idea sobre las clases, toca crear una en código, su estructura básica es la siguiente:
+\begin{lstlisting}
+    class [nombre de clase]{
+        //Atributos y métodos
+    };
+\end{lstlisting}
+Para crear atributos y métodos dentro de una clase, es básicamente lo mismo a declarar variables y crear funciones o procedimientos en \textit{main()}, pero podemos agregar un \textbf{especificador de acceso} a cada atributo y método, para limitar quienes pueden acceder o modificar la clase. Crearemos el ejemplo anterior de la clase Auto en código a continuación
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+
+    class Auto{
+        public: //Especificador de acceso público, si no se indica, public es el especificador por defecto
+            string Tipo; //4 atributos
+            string Marca;
+            string Modelo;
+            string Color;
+            
+            void Mover (){ //Método 1
+                cout << "Hacía adelante";
+            }
+            
+            void Detener(){ //Método 2
+                cout << "Detenido";
+            }
+    };
+\end{lstlisting}
+Las clases deben de crearse antes de la función \textit{main()}, como las funciones o procedimientos, una vez son creadas, para instanciarlas dentro de main, debemos escribir primero el nombre de la clase, y luego el nombre de la instancia u objeto que queramos.\begin{center}\textit{Auto camioneta;}\end{center}
+Si queremos asignarle valores a los atributos del objeto, o llamar a alguno de sus métodos, debemos utilizar le nombre del objeto creado, punto, y el nombre del atributo o método que queramos usar.\begin{center}\textit{camioneta.Tipo = "grande";\\camioneta.Color = "Rojo";\\camioneta.Mover();}\end{center}
+
+\subsection{Conceptos de POO}
+
+\subsubsection{Objetos}
+La \textbf{Programación Orientada a Objetos} (OOP por sus siglas en inglés) es una forma de programara la cual busca que sea más cercana a la realidad. En este paradigma, cada cosa en el mundo real es llamado \textbf{objeto} en la programación, es decir, una manzana verde es un objeto, una manzana roja podría ser ese mismo objeto, pero es distinto ya que esta tiene la propiedad o característica de ser color rojo, por lo tanto, son dos objetos independientes con una \textbf{identidad} propia.\\
+A estas características o propiedades se les llaman \textbf{atributos}, estos atributos pueden tener algún valor o  no, los atributos representan el estado del objeto, una curiosidad es que los objetos pueden llegar a contener más objetos, pero aún así cada uno dentro de este será distinto a su contenedor.\\
+Los objetos, como en el mundo real, tienen un \textbf{comportamiento}, no solo características, este comportamiento también puede definir al objeto, así como un auto se mueve y un celular vibra, un objeto puede realizar una acción.\\
+Hasta ahora, sabemos que un objeto está compuesto por su identidad, atributos y comportamiento; un objeto siempre está contenido en su propia identidad, es por eso que entre objetos, ninguno es igual; los objetos \textit{no siempre} representan un objeto en el mundo real, una cuenta bancaria existe en la realidad, pero la puedes tocar, un objeto en programación puede representar dicha cuenta bancaria.
+\begin{table}[h]
+    \begin{center}
+        \caption{Representación simple y visual de un objeto}
+        \label{tab: 7}
+        \begin{tabular}{|c|}
+            \hline
+            Objeto: Persona \\ \hline
+            Nombre: "Luis" \\
+            Edad: 21 \\ \hline
+            Caminar() \\
+            Hablar()\\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+\subsubsection{Abstracción}
+La \textbf{abstracción} es el pensamiento fundamental de la Programación Orientada a Objetos, así como pensábamos en una clase, la cual es un modelo o plano para los objetos, la abstracción es ese pensamiento que nos permite comprender como funciona una clase y objeto. La abstracción es la idea de como funciona algo, pero sin dar detalles de cómo o qué es ese algo, sabemos qué es un libro, pero no tenemos idea de cuántas páginas tiene, cómo es la portada, su autor, editorial, entre otras cosas, pero sabemos como funciona un libro, eso es la abstracción; lo mismo pasa con el ejemplo del automóvil, sabemos que los autos tienen marca, modelo, color, número de llantas, número de serie, tipo, etcétera, nosotros no sabemos toda esa información cuando hablamos de un auto, pero sabemos que se poseen todas esas características al instante, ese es el pensamiento que se sigue a la hora de crear una clase y su objeto. Esto nos funciona para crear una sola clase para muchos objetos, en vez de crear muchas clases para sus respectivos objetos. Más adelante se verán ejemplos de clases abstractas.
+
+\subsubsection{Encapsulamiento}
+Como mencionamos anteriormente, podemos especificar un acceso a los atributos y métodos de una clase, esto por medio de palabras reservadas, este proceso es llamado \textbf{encapsulamiento}, el cual consiste en mantener unidas y protegidas una serie de entidades dentro de otra. Los \textbf{especificadores de acceso} o \textbf{modificadores de acceso} presentes en C++ son:
+\begin{itemize}
+    \item \textbf{public}: da acceso a cualquier parte de código fuera de la clase.
+    \item \textbf{private}: no da acceso a nada fuera de la clase, solo a la clase y su contenido.
+    \item \textbf{protected}: no da acceso a nada fuera de la clase, solo a su clase, su contenido y a una clase derivada de esta.
+\end{itemize}
+El encapsulamiento lo podemos interpretar como el hecho de que no queremos que los atributos de nuestros objetos sea accedidos por otros objetos o partes del código, solo pueden ser accedidos por medio de algún método que lo permita (otro ejemplo es que, teniendo un una clase CuentadeBanco, con un objeto que representa la cuenta bancaria de un usuario, no deseemos que cualquiera pueda acceder al saldo de dicha cuenta, solo el propietario de la cuenta por medio de una autenticación). Si seguimos con el ejemplo del Auto, no queremos que otro objeto o sección del código modifique el tipo de Auto que tenga dicho objeto, para ello, podemos realizar unas modificaciones a nuestro código ejemplo anterior:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    class Auto{
+        private: //Especificador de acceso público, si no se indica, public es el especificador por defecto
+            string Tipo; //4 atributos
+            string Marca;
+            string Modelo;
+            string Color;
+        public
+            void Info(string T){
+                Tipo = T;
+            }
+            void Despliegue(){
+                cout << Tipo;
+            }
+            void Mover (){ //Método 1
+                cout << "Hacía adelante";
+            }
+            
+            void Detener(){ //Método 2
+                cout << "Detenido";
+            }
+    };
+\end{lstlisting}
+En nuestro ejemplo, hicimos privados todos los atributos para que nadie pueda asignarles valor o leer su contenido, y creamos dos procedimientos, uno para escritura y lectura respectivamente, así restringimos su acceso.\\
+Una combinación de procedimiento y función para asignar y regresar el valor de un atributo que es privado es \textbf{set} y \textbf{get}, el primero obtiene el valor del atributo y se lo asigna, y el segundo es una función que regresa el valor del atributo que acaba de ser asignado, se ve mas claro con el siguiente ejemplo:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+
+    class Nombre{ //Se crea una clase
+        private:
+            string nombre; //Se crea un atributo privado
+        public:
+            void setNombre(string n){ //Se crea procedimiento público que le asigna un valor al atributo privado
+                nombre = n;
+            }
+            string getNombre(){ //Se crea una función pública que regresa el valor del atributo privado
+                return nombre;
+            }
+    };
+    
+    int main(){
+        string nom; //Se crea una variable string
+        cin >> nom; //Se le asigna un valor a la variable
+        Nombre obj; //Se instancia un objeto de la clase Nombre
+        obj.getNombre(nom); //Se utiliza su procedimiento público
+        cout << obj.setNombre() << endl; //Se despliega el nombre del atributo privado sin modificarlo o acceder a él directamente
+        
+        return 0;
+    }
+\end{lstlisting}
+
+\subsubsection{Herencia}
+La \textbf{herencia} consiste básicamente en crear clases a partir de otras, esto conlleva el pasarle sus atributos y métodos. La clase que recibe la herencia es llamada \textbf{clase derivada}, mientras que la clase que hereda su contenido es llamada \textbf{clase base} (p.e: la clase Padre (base) puede heredar su contenido a la clase Hijo (derivada)); la clase derivada hereda todo el contenido de la clase base, a su vez, la clase derivada puede contener su propio contenido. Para derivar una clase de otra, se sigue la siguiente sintaxis:\begin{center}\textit{class [nombre clase derivada} : [especificador de acceso] [nombre clase base]\{\}\end{center}
+Se utiliza un \textbf{especificador de acceso} debido a que, todos los miembros públicos de la clase base pasarán a ser públicos en la clase derivada, esto deja de lado entonces todos aquellos miembro que sean privados o protegidos.
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    class Madre{ //Clase base
+        public:
+            Madre(){} //Constructor de la clase base
+            void MensajeMadre(){ //Procedimiento público propio y heredado a la clase derivada
+                cout << "Hola";
+            }
+        private:
+            void MensajePrivadoM(){ //Procedimiento propio debido a que es privado
+                cout << "Hola privado";
+            }
+    };
+    
+    class Hija : public Madre{ //Clase derivada
+        public:
+            Hija(){} //Constructor de la clase derivada
+            void MensajeHija(){ //Procedimiento propio de esta clase
+                cout << "Que tal";
+            }
+    };
+\end{lstlisting}
+Al hacer esta herencia, la clase Hija puede acceder al procedimiento público de la clase Madre, esto se hace al crear un objeto Hija. Una clase derivada también puede nacer de dos o más clases bases.\begin{center}\textit{class Nieta : public Madre, public Padre, public Abuela, public Abuelo \{\}}\end{center}
+Las clases derivadas \textbf{no pueden heredad} lo siguiente:
+\begin{itemize}
+    \item Funciones \textbf{friend}.
+    \item Operadores sobrecargados o redefinidos.
+    \item Constructores y destructores.
+\end{itemize}
+
+\subsubsection{Especificadores de acceso de clases derivadas (miembros protegidos)}
+Aquí simplemente vamos a repasar el uso de los \textbf{especificadores de acceso} a la hora de heredar.
+\begin{itemize}
+    \item \textbf{public}: todos los atributos y métodos públicos de la clase base pasan públicos a la clase derivada. Los atributos y métodos privados de la clase base continúan privados y la clase derivada no puede acceder a ellos, pero puede asignarles valores o desplegarlos por medio de métodos públicos.
+    \item \textbf{private}: todos los atributos y métodos públicos y protegidos de la clase base pasan privados a la clase derivada.
+    \item \textbf{protected}: todos los atributos y métodos públicos protegidos de la clase base pasan protegidos a la clase derivada.
+\end{itemize}
+Hay que recalcar que el especificador \textit{public} es el más común; si una clase derivada no se le especifica un acceso, la herencia automáticamente es \textbf{privada}.\begin{center}\textit{class Hija : Madre\{\} //La clase Hija tiene un especificador privado por defecto}\end{center}
+
+\textbf{Constructor y destructor de clases derivadas}\\
+Cuando se crea una clase que hereda a otra, el constructor y destructor de la clase base no es heredada, sin embargo, cuando un objeto de la clase derivada es creado, se le habla al constructor de la clase base, lo mismo pasa con el destructor cuando el objeto es eliminado. El siguiente código explica un poco el llamado de constructores y destructores de clases base y derivadas.
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    class Madre{
+        public: //Constructor y destructor de Madre despliegan mensaje
+            Madre(){
+                cout << "Constructor de Madre";
+            }
+            ~Madre(){
+                cout << "Destructor de Madre"
+            }
+    };
+    
+    class Hija : public Madre{
+        public: //Constructor y destructor de Hija despliegan mensaje
+            Hija(){
+                cout << "Constructor de Hija";
+            }
+            ~Hija(){
+                cout << "Destructor de Hija";
+            }
+    };
+    
+    int main(){
+        Madre madre; //Se despliega el mensaje del constructor de Madre cuando el objeto se crea, despliega el mensaje del destructor cuando se termina el programa
+        Hija hija; //Se despliega el mensaje del constructor Madre y después el de Hija cuando el objeto se crea, despliega el mensaje del destructor de Hija y luego el de Madre cuando se termina el programa
+        return 0;
+    }
+\end{lstlisting}
+
+\subsubsection{Polimorfismo}
+\textbf{Polimorfismo} significa \textbf{tener varias formas}, para explicar el polimorfismo en C++, haremos unas analogías:\\
+Cuando nosotros vamos al doctor, nosotros nos convertimos en un \textit{paciente} con características y comportamientos, cuando vamos a la escuela, nos convertimos en un \textit{estudiante} con rasgos y acciones distintas, cuando vamos a una tienda, nos convertimos en un \textit{cliente}, esto significa que, dependiendo de la circunstancia, en programación, podemos tener una clase "Vehiculo" con un método \textit{Andar}, si heredamos esa clase a dos clases derivadas Bicicleta y Automovil, ambas tendrán la función Andar, pero si nos ponemos a pensar, un vehícu  lo en sí, puede ir hacía enfrente, atrás, izquierda y derecha, un automóvil y bicicleta siguen esa lógica, pero un auto tiene cuatro llantas y un motor, una bici tiene dos llantas y pedales, esto significa que, dependiendo el objeto y la circunstancia, Vehiculo adopta una forma u otra, de eso se trata el polimorfismo. Un ejemplo con código
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    class Enemigo{ //Clase base
+        protected: //Atributo protegido, las clases derivadas de esta tendrán acceso a este atributo
+            int PoderAtaque;
+        public:
+            void setPoderAtaque(int a){ //Método público que le asigna un valor al atributo
+                PoderAtaque = a;
+            }
+    };
+    
+    class Monstruo : public Enemigo{ //Clase derivada 1
+        public:
+            void Atacar(){ //Monstruo tiene su método público Atacar con cuerpo propio
+                cout << "Monstruo - " << PoderAtaque << endl;
+            }
+    };
+    
+    class Ninja : public Enemigo{ //Clase derivada 2
+        public:
+            void Atacar(){ //Ninja tiene su método público Atacar con cuerpo propio
+                cout << "Ninja - " << PoderAtaque << endl;
+            }
+    };
+    
+    int main(){
+        Ninja n;
+        Monstruo m; //Se crean objetos de cada clase derivada
+        
+        Enemigo *enemigo1 = &n;
+        Enemigo *enemigo2 = &m; //Se crean dos punteros Enemigo que apuntan a la dirección de cada objeto Ninja y Monstruo creados anteriormente
+        
+        enemigo1 -> setPoderAtaque(30);
+        enemigo2 -> setPoderAtaque(40);//Se le asigna un valor de Ataque a cada objeto Ninja y Monstruo por medio del punto y la clase base
+        
+        n.Atacar();
+        m.Atacar(); //Se llama al método que despliega el ataque de cada enemigo
+    }
+\end{lstlisting}
+Lo que ocurre en el código de arriba, es que buscamos crear un juego en el cual habrá una variedad de enemigos que atacaran al jugador, este ataque que tendría cada enemigo tiene un valor de daño que le harán al jugador y un tipo de ataque, para ello, creamos una clase base Enemigo, de la cual nacerán todos los demás tipos de enemigos, esta clase base tiene dos clases derivadas: Ninja y Monstruo, entonces, cuando creamos las clases derivadas, estas heredan el método de asignar el poder de ataque de cada enemigo, además, a cada clase le creamos un método donde se despliega el poder de ataque que tiene el enemigo y el tipo de ataque que tiene; volteamos a ver a \textit{main()}, aquí creamos un objeto Ninja y Monstruo, el puntero Enemigo que apunta hacía la dirección de memoria de estos objetos recientemente creados funcionan para asignarle un valor de poder de ataque a cada objeto por medio de la clase base Enemigo y finalmente se despliega el poder y tipo de ataque de cada enemigo.\\
+Podría pensarse que está de más utilizar punteros en el ejemplo anterior, pero es normal y usual utilizar punteros para trabajar con polimorfismo, también podría pensarse que con crearse un objeto de cada clase derivada y llamar a las funciones heredadas es suficiente, pero el punto del polimorfismo es que los objetos de las clases derivadas nazcan de la clase base y que los métodos se utilicen igual por medio de la clase base, eso explica la aparición de punteros en el previo ejemplo, dejaremos otro para reforzar:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    class Persona {
+        private:
+            string nombre; //Atributos privados
+            int edad;
+        public:
+            Persona(string n, int e) :nombre(n), edad(e) {} //Constructor que inicializa los atributos
+            ~Persona(){} //Destructor
+            void InfoPersona() { //Procedimiento público que despliega el valor de los atributos
+                cout << "Me llamo " << nombre << "y tengo " << edad << " años\n";
+            }
+            virtual void Caminar() { //Método virtual que despliega un mensaje predeterminado
+                cout << "Persona camina";
+            }
+    };
+
+    class Nino : public Persona { //Clase heredada1
+        private:
+            string dulcefav; //Atributos privados
+        public:
+            Nino(string n, int e, string df) : Persona(n, e) { dulcefav = df; } //Constructor que inicializa el atributo de esta clase y los de la clase base
+            ~Nino(){} //Destructor
+            void Caminar() { //Procedimiento virtual sobrecargado para esta clase derivada
+                InfoPersona(); //Llama al procedimiento de la clase base
+                cout << "Soy un niño y camino mientras como " << dulcefav << "\n";
+            }
+    };
+
+    class Adolecente : public Persona {
+        private:
+            string estudios; //Atributo privado
+        public:
+            Adolecente(string n, int e, string es) : Persona(n, e) { estudios = es; } //Constructor que inicializa el atributo de esta calse y los de la clase base
+            ~Adolecente() {} //Destructor
+            void Caminar() { //Procedimiento virtual sobrecargado para esta clase derivada
+                InfoPersona(); //Llama al procedimiento de la clase
+                cout << "Soy un adolecente que camina mientras estudia " << estudios << "\n";
+            }
+    };
+
+    int main() {
+        Persona* nin = new Nino("alan", 10, "chocolate"); //Crea un puntero Persona hacía la clase Nino pasándole parámetros
+        Persona* ado = new Adolecente("david", 16, "matematicas"); //Crea puntero Persona hacía la clase Adolecente pasándole parámetros
+        ado->Caminar();
+        nin->Caminar(); //Invoca al procedimiento virtual sobrecargado de cada clase derivada
+        system("pause");
+        return 0;
+    }
+\end{lstlisting}
+
+\subsection{Creando una clase en un archivo separado}
+Como hemos visto en ejemplos más arriba, podemos crear clases en nuestro archivo de código, pero también podemos \textbf{crear clases en archivos separados} a nuestro fichero principal, y referenciar nuestra clase separada en este fichero. Dependiendo del programa donde estés desarrollando código C++, la forma de generar la clase separada es distinta, lo que debes de saber es que una clase separada está constituida por dos archivos:
+\begin{itemize}
+    \item \textbf{[nombre de la clase].h}: es la cabecera del archivo. Este contiene la declaración de la clase (\textit{prototipo de la clase}) y declaración de variables, si es necesario. En este archivo también se encuentra el constructor de la clase.
+    \begin{lstlisting}
+        //Archivo clase.h
+        
+        class ClaseP{
+            public:
+                ClaseP(){ } //Constructor
+            
+            //Atributos
+        }
+    \end{lstlisting}
+    \item \textbf{[nombre de la clase].cpp}: es el código fuente del archivo. Aquí se escribe la implementación del los atributos, variables y métodos de la clase.
+    \begin{lstlisting}
+        //Archivo clase.cpp
+        
+        #include "ClaseP"
+        
+        ClaseP::ClaseP(){ }
+    \end{lstlisting}
+\end{itemize}
+Sabemos que en el archivo \textbf{.h} de la clase, se declaran los atributos, constructores y métodos, pero solo eso, no se implementan o trabajan todavía, en el archivo \textbf{.ccp} debemos incluir en la cabecera al archivo \textit{.h}, y con ello, ya podemos trabajar los atributos, constructores y métodos, sin embargo, no podemos empezar a codificar simplemente escribiendo el nombre de un método y dándole un cuerpo a este, sino que debemos de referenciar del archivo .h al .ccp todo de atributo, constructor y método que en ese archivo haya, es por eso que en el ejemplo de arriba, hay dos puntos (\textbf{::}) entre el nombre de la clase y su constructor, estos dos puntos son llamados \textbf{operadores de resolución de alcance}, debemos indicar estos dos puntos cada que se dé cuerpo a un método o constructor.
+\begin{center}
+    \textit{//Referencia de un método o constructor de .h a.ccp}\\
+    \textit{[fuente]::[referencia]()\{ \}}\\
+    \textit{[padre]::[hijo]\{\}}\\
+    \textit{Auto::Mover()\{\}}
+\end{center}
+Finalmente, para utilizar la clase en archivo separado en nuestro archivo principal con el main(), debemos incluir el fichero .h en el código principal.
+\begin{lstlisting}
+    #include <iostream>
+    #include "ClaseP.h"
+    using namespace std;
+    
+    int main(){
+        ClaseP obj;
+        
+        return 0;
+    }
+\end{lstlisting}
+
+\subsection{Miembros especiales}
+\subsubsection{Constructores}
+Los \textbf{constructores} son un método especial de cada clase, no pertenecen al tipo de funciones ni procedimientos, no regresan nada. Estos métodos son invocados cada que se crea una nueva clase y, dentro de su código, puede mostrar o hacer lo que sea. A continuación su estructura:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    class miClase{
+        miClase(){
+            //Código
+        }
+    };
+\end{lstlisting}
+Los constructores son útiles para inicializar atributos de la clase, por lo general, los constructores no tienen argumentos, pero podemos ponérselos, y con ello, asignar valores de inicio a los atributos de nuestra clase, como por ejemplo:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+
+    class Nombre{ //Se crea una clase
+        Nombre(string nom){ //Constructor de la clase con un argumento
+            setNombre(nom); //Se llama al procedimiento de asignación de valor al atributo
+        }
+        
+        private:
+            string nombre; //Se crea un atributo privado
+        
+        public:
+            void setNombre(string n){ //Se crea procedimiento público que le asigna un valor al atributo privado
+            nombre = n;
+            }
+            string getNombre(){ //Se crea una función pública que regresa el valor del atributo privado
+            return nombre;
+            }
+    };
+\end{lstlisting}
+Entonces, si podemos crear argumentos en los constructores, cuando una objeto se crea a partir de una clase, debemos pasarle algún valor como parámetro para que el constructor lo reciba y haga lo que tenga que hacer, como se muestra a continuación:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+
+    class Nombre{ //Se crea una clase
+        Nombre(string nom){
+            setNombre(nom);
+        }
+        
+        private:
+            string nombre; //Se crea un atributo privado
+        
+        public:
+            void setNombre(string n){ //Se crea procedimiento público que le asigna un valor al atributo privado
+            nombre = n;
+            }
+            string getNombre(){ //Se crea una función pública que regresa el valor del atributo privado
+            return nombre;
+            }
+    };
+    
+    int main(){
+        string nom; //Se crea una variable string
+        cin >> nom; //Se le asigna un valor a la variable
+        Nombre obj(nom); //Se crea el objeto y se le pasa como parámetro la variable local
+        cout << obj.setNombre() << endl; //Se despliega el nombre del atributo privado sin modificarlo o acceder a él directamente
+        
+        return 0;
+    }
+\end{lstlisting}
+\textit{Nota}: podemos tener múltiples constructores dentro de una clase con cantidad variada de argumentos para parámetros.
+\subsubsection{Destructores}
+Contrario a los constructores, los \textbf{destructores} son llamados cuando un objeto es destruido o eliminado, esta función es utilizada comúnmente para eliminar espacio de los punteros, liberar memoria, cerrar archivos que se estaban utilizando, etcétera. La estructura de un destructor es la siguiente:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+
+    class Prueba{
+        public:
+            Prueba(){
+                //Código del constructor
+            }
+            
+            ~Prueba(){
+                //Código del destructor
+            }
+    };
+\end{lstlisting}
+Podemos ver que al inicio del nombre de la clase, se debe poner una virguilla o tilde (\textbf{~}), los destructores deben declararse en el archivo \textit{.h} de la clase y debe ser referenciado en el archivo \textit{.ccp} con el \textit{operador de resolución de alcance ::}. Los destructores no reciben parámetros, no puedes tener más de un destructor, no se pueden sobrecargar y no son obligatorios. Aquí un ejemplo:
+\begin{lstlisting}
+    //Archivo .h
+    class Auto{ //Creando una nueva clase
+        public:
+            Auto(); //Prototipo del constructor público
+            
+            ~Auto(); //Prototipo del destructor público
+    };
+    
+    //Archivo .ccp
+    #include <iostream> //Se incluye en la cabecera las entradas y salidas de iostream
+    #include "Auto.h" //Se incluye en la cabecera el archivo .h de la clase
+    using namespace std;
+    
+    Auto::Auto(){ //Referenciado del constructor de .h a .ccp
+        cout << "Se ha creado un objeto de la clase Auto" << endl; //Contenido del constructor
+    }
+    
+    Auto::~Auto(){ //Referenciado del destructor de .h a .ccp
+        cout << "Se ha destruido un objeto de la clase Auto" << endl; //Contenido del destructor
+    }
+    
+    //Archivo principal
+    #include <iostream>
+    #include "Auto.h" //Se incluye en la cabecera el archivo .h de la clase
+    using namespace std;
+    
+    int main(){
+        Auto obj; //Despliega el contenido del constructor, al ser creado el objeto y el contenido del destructor, cuando el programa termina, el destructor es invocado
+        
+        return 0;
+    }
+\end{lstlisting}
+
+
+
+\subsection{Palabras reservadas}
+\subsubsection{Friend}
+Si hacemos memoria, sabemos que gracias a el \textbf{especificador de acceso private} los atributos solo puede ser accedidos por miembros o métodos de la misma clase, no al resto del código, sin embargo, existe una palabra reservada que permite que un procedimiento o función fuera de la clase acceda a un atributo de la misma en específico, como se puede ver en el siguiente ejemplo:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+
+    clase Persona{
+        public:
+            Persona(){
+                edad = 0;
+            }
+        private:
+            int edad;
+        
+        friend void AsignarEdad(Persona &persona); //Procedimiento amigo que accede al atributo privado edad
+    };
+    
+    void AsignarEdad(Persona &per){ //Procedimiento externo a la clase Persona que accede y modifica el valor del atributo privado edad
+        per.edad = 21;
+        cout << per.edad << endl;
+    }
+    
+    int main(){
+        Persona persona; //Se crea un objeto Persona
+        AsignarEdad(persona); //Se le pasa por parámetro el objeto persona al procedimiento
+        
+        return 0;
+    }
+\end{lstlisting}
+Podemos notar que, dentro de la clase, hay un atributo privado llamado \textit{edad}, el constructor lo inicializa en 0, fuera de la clase, hay un procedimiento llamado \textit{AsignarEdad}, su argumento es un objeto \textit{Persona} al cual le pasamos un parámetro por referencia (obligatoriamente) utilizando el símbolo \textbf{\&}, dentro de dicho procedimiento, se le asigna un valor al atributo privado y se despliega su contenido, esto es posible gracias a la palabra reservada \textbf{friend}, esta instrucción permite el acceso de procedimientos o funciones externas de una clase a un atributo de la misma, dentro de Persona está el prototipo del mismo procedimiento externo, solo que al principio está la palabra reservada, y dentro de sus argumentos se pasan parámetros por referencia..\begin{center}\textit{friend [void o tipo de dato de retorno] [nombre de la función/procedimiento] (parámetros por referencia)}\end{center}
+La instrucción \textit{friend} es utilizado para acceder a atributos o modificar sus valores de dos o más clases que necesitan interactuar brevemente entre ellas. Se puede ir más allá y crear una clase completa friend.
+\subsubsection{This}
+Supongamos que tenemos nuestra clase \textit{MiClase}, la cual tiene un atributo privado del tipo string llamado "mensaje", también tenemos un método que tiene una variable local string llamada "mensaje", dentro del método, se despliega el contenido de mensaje. Esta situación puede ocurrir con variables locales de un método y atributos de una clase que tienen el mismo nombre, podríamos evadir el problema cambiando nombres y listo, pero lo que pretendemos hacer es mantener los mismos nombres, pero acceder a cada variables respectivamente. Si desplegamos con \textit{cout} el contenido de la variable local no hay problema, pero no podríamos saber cual es el contenido del atributo con el mismo nombre ya que el método prioriza sus variables locales, utilizaremos la palabra reservada \textbf{this} para acceder al contenido del atributo. \textit{this} es una palabra reservada que representa un puntero que apunta hacía los atributos de una clase desde sus métodos, esto se utiliza por lo general para solucionar la situación presentada hace algunas líneas y para la sobrecarga de operadores.
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+
+    class MiClase{
+        public:
+            MiClase(int a) : var(a) {}
+            void Imprimir(){
+                int var;
+                cin >> var;
+                cout << var << endl; //Imprime la variable local
+                cout << this->var << endl; //Imprime el atributo de la clase
+                cout << (*this).var << endl; //Imprime el atributo de la clase
+            }
+        private:
+            int var;
+    };
+    
+    int main(){
+        MiClase obj(50);
+        obj.Imprimir();
+        
+        return 0;
+    }
+\end{lstlisting}
+Al ser \textit{this} un puntero, para acceder a su contenido es necesario utilizar la \textbf{flecha operadora de operación (->)} o la instrucción especial \textbf{(*this).} Hay que aclarar también que solo los métodos (funciones miembro) tienen un puntero \textit{this}, y la palabra \textit{friend} no posee un puntero de este tipo.
+
+
+
+\subsection{Operadores de selección}
+Vamos a plantear una situación que puede ocurrir cuando se crear clases en archivos separados: supongamos que creamos tres clases llamadas "abuelo", "padre" e "hijo", abuelo tiene en su prototipo una estructura llamada "poo", ahora, queremos incluir en la cabecera de padre al archivo \textit{.h} de abuelo, finalmente, incluimos en la cabecera de hijo los archivos .h de abuelo y padre, una vez sea compilado el programa, tendremos como resultado dos estructuras poo en nuestro programa, causando un error de compilado.
+\begin{lstlisting}
+    //Archivo .h de abuelo
+    struct poo{
+        int atri;
+    }
+    
+    //Archivo .h de padre
+    #include "abuelo.h"
+    
+    //Archivo .h de hijo
+    #include "abuelo.h"
+    #include "padre.h"
+    
+    //Resultado de la compilación
+    struct poo{
+        int atri;
+    }
+    
+    struct poo{ //Doble estructura creada a causa de doble inicialización de la misma estructura en dos archivos distintos
+        int atri;
+    }
+\end{lstlisting}
+El error se da porque, como bien sabemos, al programar en C o C++, el código que estamos creando no va dirigido a la computadora, sino al compilador, el compilador tiene una serie de \textbf{directrices} o \textbf{centinelas (guard)} que le sirven para no repetir código y así evitar errores, tal es el caso de \textbf{\#include}, \textit{include} lo que hace es decirle al compilador que agregue un fichero a otro ya existente, para su posterior uso, si el fichero a referenciar contiene una estructura que pueda repetirse y, como consecuencia, duplicarse, genera un error de compilación.\\
+Para evitar el error del código de arriba, utilizaremos una directriz o centinela llamada \textbf{\#ifndef [nombre]- \#endif} y \textbf{\#define [nombre]}, el cual asegura dentro del compilador, una vez hemos mandado el código, que no exista una estructura repetida en diversos archivos, para evitar un duplicado, \textit{\#ifndef [nombre]} actua como un if cualquiera, el nombre puede ser definido por el usuario como este desee, algunos escriben el nombre de la clase, guión bajo, y una H, haciendo referencia al archivo .h de la clase en cuestión, es recomendable utilizar mayúsculas para estos nombres. \textit{\#define} se encarga de declarar la estructura que se procura no duplicar o que se procura evaluar su existencia. Finalmente, \textit{\#endif} cierra la directriz o centinela. Corregiremos el código de arriba:
+\begin{lstlisting}
+    //Archivo .h de abuelo
+    #ifndef CABUELO_H //Directriz para corroborar existencia de la estructura
+    #define CABUELO_H //Declara la estructura
+    
+    struct poo{
+        int atri;
+    }
+    
+    #endif //Cierra la directirz
+    
+    //Archivo .h de padre
+    #include "abuelo.h"
+    
+    //Archivo .h de hijo
+    #include "abuelo.h"
+    #include "padre.h"
+    
+    //Resultado de la compilación
+    struct poo{
+        int atri; //Como se creó inicialmente la estructura en abuelo.h, padre.h no la referencia gracias a la directriz, finalmente, la compilación en hijo.h crea una sola estructura sin duplicado
+    }
+\end{lstlisting}
+Una vez más, podemos utilizar \textbf{punteros} del tipo de una clase y para acceder a la dirección de memoria de un objeto creado a partir de una clase. Si queremos acceder a un método de la clase de la cual se hizo un puntero objeto, debemos usar  el \textbf{flecha operadora de selección (->)}.\begin{center}\textit{Auto obj;\\Auto* puntero = \&obj;\\obj->Imprimir();}\end{center}
+
+
+
+\subsection{Objetos Const}
+Una \textbf{constante} es una expresión la cual debe ser inicializada con un valor a la hora de su declaración, la cual no se puede modificar durante la ejecución del programa, es una variable que funciona como una constante matemática o física (Pi, Euler, la gravedad). Debemos usar la palabra reservada \textbf{const}, seguido del tipo de dato, nombre de la variable y su valor.\begin{center}\textit{const [tipo de dato] [nombre variable] = [valor];}\end{center}
+Se pueden crear objetos de clases que sean constantes, es decir, una vez creado el objeto, no se puede modificar ninguno de sus parámetros o métodos durante su tiempo de vida. Cuando se crea, debe ser inicializado por medio de su constructor; si tiene un constructor con parámetros, se le asignan valores a dichos parámetros, si no tiene parámetros el constructor y esté no tiene argumentos, se crea el objeto simplemente sin paréntesis ni valores, y si la clase de origen del objeto no tiene constructor, genera un error de compilación.\begin{center}\textit{const Auto obj;}\end{center}
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    class Auto{
+        public:
+            Auto(){ } //Constructor vacío
+            Auto(string m){ //Constructor que despliega mensaje
+                cout << m;
+            }
+            ~Auto(){ //Destructor
+                cout << "Eliminado";
+            }
+    };
+    
+    int main(){
+        const Auto obj; //Objeto constante de la clase Auto inicializado por medio del constructor vacío
+        const Auto obj2("Este mensaje no cambiará nunca."); //Objeto constante de la clase auto inicializado por parámetro con el constructor con un argumento
+    }
+\end{lstlisting}
+Algo que se debe tomar en cuenta, es el hecho de que los objetos no constantes pueden llamar a las funciones o métodos no constantes de una clase, esto quiere decir que, un objeto constante no puede acceder a las funciones y métodos no constantes, si un objeto constante invoca a un método o función no constante, ocurre un error de compilación; es entonces que debemos declarar funciones constantes dentro de una clase, para ello, simplemente agregamos la palabra reservada \textit{const} al final de cada prototipo y definición de método o función que tenga una clase.
+\begin{lstlisting}
+    //Archivo .h
+    #ifndef CLASEPRUEBA_H //Si no existe esta clase, entonces
+    #define
+    
+    class Prueba{
+        public:
+            void Despliegue() const; //Método constante
+            void Mensaje(); //Método no constante
+    };
+    
+    #endif //Fin de centinela
+    
+    //Archivo .ccp
+    #include "Prueba.h"
+    #include <iostream>
+    using namespace std;
+    
+    void Prueba::Despliegue() const { //Método constante
+        cout << "Mensaje 1" << endl;
+    }
+    void Prueba::Mensaje(){ //Método no constante
+        cout << "Mensaje 2" << endl;
+    }
+    
+    /Archivo principal
+    #include "Prueba.h"
+    #include <iostream>
+    using namespace std;
+    
+    int main(){
+        Prueba obj; //Objeto no constante
+        const Prueba obj2; //Objeto constante
+        
+        obj.Mensaje(); //El objeto no constante solo muestra el método no constante
+        obj2.Despliegue(); //El objeto constante solo muestra el método constante
+        
+        return 0;
+    }
+\end{lstlisting}
+
+
+
+\subsection{Miembros inicializador}
+En ocasiones, necesitaremos de variables constantes dentro de una clase, pero en el momento en el que estamos escribiendo el código de la clase, nos damos cuenta que requerimos que el usuario ingrese el valor para la variable constante, si acudimos a ejemplos pasados donde asignamos valores a las variables de una clase por medio de un método o el constructor, nos daremos cuenta que esto genera un error de compilación, precisamente porque la constante no fue inicializada y porque asignarle un valor por entrada va en contra de la filosofía de las constantes.\\
+Es entonces que debemos recurrir a ciertos tipos de \textbf{miembros inicializadores}, estos miembros son otra forma de asignar valores a variables, entonces sus ejemplos nos topamos con las \textbf{listas inicializadoras}, estas van al lado del constructor y se separan de este por medio de dos puntos (\textbf{:}), como lo muestra su estructura:\begin{center}\textit{[constructor de clase]() : atributo1(valor), atributo2(valor) \{\}}\end{center}
+Con este miembro lista, podemos resolver el problema que se presentó algunas líneas arriba, debemos recalcar que estos miembros lista no terminan con punto y coma. Podemos ver esto más claro con el siguiente ejemplo:
+\begin{lstlisting}
+    //Archivo Persona.h
+    #ifndef PERSONA_H
+    #define
+    class Persona{
+        public:
+            Persona(int a, string b); //Constructor con dos argumentos
+        private:
+            int edad; //Atributos
+            const string nombre;
+    };
+    #endif
+    
+    //Archivo Persona.ccp
+    #include "Persona.h"
+    #include <iostream>
+    using namespace std;
+    
+    Persona::Persona(int a, int b) : edad(a), nombre(b) //Se le pasan los parámetros a y b al constructor por medio de una lista inicializadora
+    {
+        cout << nombre << ", " << edad << endl; //Despliega los atributos
+    }
+    
+    //Archivo principal
+    #include "Persona.h"
+    #include <iostream>
+    using namespace std;
+    
+    int main(){
+        Persona obj(21, "Luis"); //Crea objeto de Persona y le pasa parámetros al constructor
+    
+        return 0;
+    }
+\end{lstlisting}
+\textit{Nota}: las listas inicializadoras pueden ser utilizadas para variables o miembros no constantes, depende de uno utilizar este método de asignación.
+
+
+
+\subsection{Composición}
+La \textbf{composición} consiste en armar un objeto completo a partir de objetos más pequeños y simples, por ejemplo, un automóvil está compuesto de piezas de metal, un motor, llantas, engranajes, ventanas y demás piezas, en programación, dicho auto podría estar compuesto de una sola clase que contenga atributos del tipo de otras clases (clase Auto tiene el atributo llanta, la cual es del tipo Llanta). Podemos apreciarlo más claramente con el siguiente ejemplo:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+
+    class Cumpleanos{
+        public:
+            Cumpleanos(int m, int d, int a) : mes(m), dia(d), anio(a) {} //Constructor con argumentos a que inicializan los atributos
+            void ImprimirCumple(){ //Método que imprime la fecha de cumpleaños
+                cout << dia << "/" << mes << "/" << anio << endl;
+            }
+        private: //Atributos privados de una fecha de cumpleaños
+            int mes;
+            int dia;
+            int anio;
+    };
+    
+    class Persona{
+        public:
+            Persona(string n, Cumpleanos c) : nombre(n), cumple(c) {} //Constructor con argumentos que inicializa los atributos
+            void ImprimeDatos(){ //Método que imprime los datos de la persona
+                cout << nombre << endl;
+                cumple.ImprimirCumple(); //El atributo tipo Cumpleanos invoca al método de imprimir la fecha de cumpleaños
+            }
+        private: //Atributos privados de una persona
+            string nombre;
+            Cumpleanos cumple; //Podemos hacer que un atributo sea del tipo de una clase, automáticamente, dicho atributo obtiene todos los atributos contenidos de la clase tipo que se le asignó, volviendo esto una estructura más compleja
+    };
+    
+    int main(){
+        Cumpleanios cumpleanios(2, 19, 2001); //Crea un objeto Cumpleanios y se le asignan valores al objeto
+        Persona persona("Luis", cumpleanios); //Se crea un objeto Persona y se le pasa un valor string normal y el objeto creado previamente
+        persona.ImprimirInfo(); //Se llama al método de impresión de Persona
+    
+        return 0;
+    }
+\end{lstlisting}
+En resumen, si un objeto de la vida real que estamos intentando imitar es muy complejo, podemos dividirlo en pequeños objetos y más simples para componerlo, volviendo esta tarea algo más simple y sencillo de entender, solo no hay que perder el hilo de todos los objetos piezas que compondrán a uno complejo mayor.
+
+
+
+\subsection{Sobrecarga de operadores}
+Los operadores en C++ funcionan únicamente con los tipos de datos integrados en el lenguaje y con expresiones lógicas que reconoce el mismo, pero a la hora de estar creando constantemente clases y objetos, quizás queramos compararlos o realizar alguna acción aritmética con ellos, los operadores no podrían funciona, pero C++ cuenta con la opción de \textbf{sobrecargar o redefinir operadores}, para que adopten una nueva forma de trabajar. Los operadores que pueden ser redefinidos o sobrecargados son:
+\begin{table}[ht]
+    \begin{center}
+        \caption{Operadores que aceptan sobrecarga}
+        \label{tab: 8}
+        \begin{tabular}{|l|l|l|l|l|l|}
+            \hline
+            +&-&*&/&\%&$\wedge$ \\ \hline
+            \&&$\mid$&$\sim$&!&,&= \\ \hline
+            $<$&$>$&$<$=&$>$=&++&-- \\ \hline
+            $<<$&$>>$&==&!=&\&\&&$\mid\mid$ \\ \hline
+            +=&-=&/=&\%=&$\wedge$=&\&= \\ \hline
+            $\mid$=&*=&$<<$=&$>>$=&[]&() \\ \hline
+            ->&->*&new&new[]&delete&delete[] \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+En el caso de clases, sobrecargar un operador funciona para sumar objetos, cosa que con los operadores convencionales no se podría. Para \textbf{sobrecargar} un operador lo podemos hacer desde la clase donde se busque utilizarlo, se escribe el nombre de la clase, la palabra reservada \textbf{operator}, el operador que se busca redefinir y paréntesis con los argumentos que se deseen.\begin{center}\textit{[Nombre clase] operator[operador a sobrecargar](argumentos){}}\end{center}
+Tenemos el siguiente ejemplo:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    class Persona {
+        public:
+            int edad; //Atributo público edad
+
+            Persona() {} //Constructor vacío
+            Persona(int e) : edad(e){} //Constructor con un argumento al que se le pasa un valor por parámetro
+            Persona operator+(Persona& per) { //Sobrecarga del operador +, se le pasa un objeto Persona por referencia
+                Persona p; //Se crea un objeto Persona p
+                p.edad = this->edad + per.edad; //Se suma la edad el objeto Persona que se cree más otro objeto persona y se le asigna a la edad de otro objeto Persona
+                return p; //El objeto Persona es retornado
+            }
+    };
+
+    int main() {
+        Persona persona1(20), persona2(40); //Se crean dos objetos Persona y se les asigna un valor de edad. La sobrecarga del operador no se ejecuta automáticamente, solo cuando el compilador detecte una suma con un objeto Persona
+        Persona personaC = persona1 + persona2; //Se crea un objeto Persona y se le asigna la suma de dos objetos Persona, se llama a la sobrecarga del operador +
+        cout << personaC.edad; //Despliega 60
+        
+        return 0;
+    }
+\end{lstlisting}
+
+\subsection{Clases abstractas}
+Si recordamos el significado de abstracción visto más arriba, tenemos que lograr que cada objeto tenga un comportamiento distinto dada una situación; para la programación, cada objeto debe tener un código distinto para el mismo método, para ello, utilizamos las \textbf{funciones virtuales}. Una \textit{función virtual} es método que hace aparición en una clase base, este método, al heredar a otras clases, aparece y puede ser redefinida por las clases derivadas. Su estructura es la siguiente:\begin{center}\textit{virtual [void o tipo retorno] [nombre método]([argumentos])\{\}}\end{center}
+Para la instrucción de arriba, la clase que estamos creando es abstracta, pero podemos crear objetos a partir de esta, heradarla a otras clases y crear objetos con la clase derivada. Un ejemplo: tenemos una clase base llamada \textit{Persona}, la cual tiene de atributos su \textit{nombre} y \textit{edad}, con un método \textit{Caminar()} el cual despliega un mensaje, este método es virtual; ahora, crearemos dos clases derivadas de Persona las cuales tendrán los atributos de su clase base, pero desplegarán otro mensaje distinto al presentado en Caminar de Persona:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    class Persona {
+        private:
+            string nombre; //Atributos privados
+            int edad;
+        public:
+            Persona(string n, int e) :nombre(n), edad(e) {} //Constructor que inicializa los atributos
+            ~Persona(){} //Destructor
+            void InfoPersona() { //Procedimiento público que despliega el valor de los atributos
+                cout << "Me llamo " << nombre << "y tengo " << edad << " años\n";
+            }
+            virtual void Caminar() { //Método virtual que despliega un mensaje predeterminado
+                cout << "Persona camina";
+            }
+    };
+
+    class Nino : public Persona { //Clase heredada1
+        private:
+            string dulcefav; //Atributos privados
+        public:
+            Nino(string n, int e, string df) : Persona(n, e) { dulcefav = df; } //Constructor que inicializa el atributo de esta clase y los de la clase base
+            ~Nino(){} //Destructor
+            void Caminar() { //Procedimiento virtual sobrecargado para esta clase derivada
+                InfoPersona(); //Llama al procedimiento de la clase base
+                cout << "Soy un niño y camino mientras como " << dulcefav << "\n";
+            }
+    };
+
+    class Adolecente : public Persona {
+        private:
+            string estudios; //Atributo privado
+        public:
+            Adolecente(string n, int e, string es) : Persona(n, e) { estudios = es; } //Constructor que inicializa el atributo de esta calse y los de la clase base
+            ~Adolecente() {} //Destructor
+            void Caminar() { //Procedimiento virtual sobrecargado para esta clase derivada
+                InfoPersona(); //Llama al procedimiento de la clase
+                cout << "Soy un adolecente que camina mientras estudia " << estudios << "\n";
+            }
+    };
+
+    int main() {
+        Persona* nin = new Nino("alan", 10, "chocolate"); //Crea un puntero Persona hacía la clase Nino pasándole parámetros
+        Persona* ado = new Adolecente("david", 16, "matematicas"); //Crea puntero Persona hacía la clase Adolecente pasándole parámetros
+        ado->Caminar();
+        nin->Caminar(); //Invoca al procedimiento virtual sobrecargado de cada clase derivada
+        system("pause");
+        return 0;
+    }
+    #include <iostream>
+    using namespace std;
+    
+    class Madre{ //Clase base
+        public:
+            Madre(){} //Constructor de la clase base
+            virtual void Mensaje(){ //Procedimiento virtual que despliega un mensaje predeterminado
+                cout << "Mensaje predeterminado";
+            }
+        private:
+            void MensajePrivadoM(){ //Procedimiento propio debido a que es privado
+                cout << "Hola privado";
+            }
+    };
+    
+    class Hija : public Madre{ //Clase derivada
+        public:
+            Hija(){} //Constructor de la clase derivada
+            void Mensaje(){ //Procedimiento propio de esta clase
+                cout << "Que tal";
+            }
+    };
+    
+    int main() {
+        Madre m = new Madre();
+        Hija h = new Hija();
+        m.Mensaje();
+        h.Mensaje();
+        
+        return 0;
+    }
+\end{lstlisting}
+Con esto logramos hacer que, bajo ciertas circunstancias o dependiendo de la situación, una función virtual en una clase heredada tenga un bloque de código distinto al de la clase base.\\
+Existe también las llamadas \textbf{funciones virtuales puras}, las cuales sus prototipos están igualadas a 0, esto significa que la clase donde está esta función pura se convierte completamente a una \textbf{clase abstracta}, dando como resultado una clase la cual no puede tener objetos instanciados, solo clases derivadas. Hay que aclarar que, si una clase base tiene una función virtual, todas las clases que son derivadas de esta, deberán \textit{anular} (redefinir la función virtual pura en la clase derivada) a la función virtual pura de la clase base, si no se hace esto, ocurrirá un error de código y surgirán problemas cuando se instancie un objeto de la clase derivada donde no se anuló la función. Otro ejemplo de abstracción:
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    class Enemigo{ //Clase base
+        protected: //Atributo protegido, las clases derivadas de esta tendrán acceso a este atributo
+            int PoderAtaque;
+        public:
+            void setPoderAtaque(int a){ //Método público que le asigna un valor al atributo
+                PoderAtaque = a;
+            }
+            virtual void Atacar(){ //Método virtual que todas las clases heredadas deben anular o redefinir
+                cout << "Ataque de enemigo";
+            }
+    };
+    
+    class Monstruo : public Enemigo{ //Clase derivada 1
+        public:
+            void Atacar(){ //Método anulado o redefinido de la clase base
+                cout << "Monstruo - " << PoderAtaque << endl;
+            }
+    };
+    
+    class Ninja : public Enemigo{ //Clase derivada 2
+        public:
+            void Atacar(){ //Método anulado o redefinido de la clase base
+                cout << "Ninja - " << PoderAtaque << endl;
+            }
+    };
+    
+    int main(){
+        Ninja n;
+        Mounstro m; //Se crean objetos de cada clase derivada
+        
+        m.setPoderAtaque(30);
+        n.setPoderAtaque(40); //Se le asigna un valor de Ataque a cada objeto Ninja y Monstruo por medio del punto y la clase base
+        
+        m.Atacar();
+        n.Atacar(); //Se llaman al método virtual y todas sus redefiniciones por medio de punteros
+    }
+\end{lstlisting}

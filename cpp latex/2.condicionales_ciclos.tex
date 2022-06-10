@@ -1,0 +1,188 @@
+\section{Condicionales}
+La declaración \textbf{if} sirve para poner condicionales en código, si la condición \textbf{true} se cumple, se ejecuta un bloque de código, sino, se ejecuta otro bloque o se ignora, continuando con el código. Se utilizan \textbf{operadores relacionales} para algunas sentencias condicionales funcionales:
+\begin{table}[ht]
+    \begin{center}
+        \caption{Operadores relacionales}
+        \label{tab: 3}
+        \begin{tabular}{c c}
+            \hline
+            \textbf{Operador}&\textbf{Descripción} \\
+            \hline
+            \textgreater&Mayor que \\
+            \textless&Menor que \\
+            \textgreater =&Mayor o igual que \\
+            \textless =&Menor o igual que \\
+            ==& Igual a \\
+            !=& Distinto que \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\begin{lstlisting}
+    if (condición){
+        //Código
+    }
+    else{
+        //Código
+    }
+\end{lstlisting}
+C++ da la posibilidad de poder \textbf{anidar sentencias} if, esto quiere decir que podemos insertar un if dentro de otro, en su estructura completa, puede ser un número ilimitado de condicionales. Por otro lado, si solo se le da una instrucción al if o al else, pueden omitirse las llaves, para hacer menos volumen de código.
+\begin{lstlisting}
+    int x = 15;
+    if (x >= 18){
+        if (x >= 21)
+            cout << "Legal en el mundo";
+        else
+            cout << "Legal el México";
+    }
+    else{
+        if (x == 15){
+            cout << "Puede tener quinceañera";
+        }
+        else{
+            cout << "Es menor de edad";
+        }
+    }
+\end{lstlisting}
+\textit{Nota}: si no se ponen las llaves y se escribe más de una instrucción, C++ lanzará un error.
+
+
+
+\section{Ciclos}
+Un ciclo es un bloque de código que se ejecuta hasta que una condición es cumplida. Pueden ser usados para obtener datos de los usuarios repetidas veces, desplegar información de un arreglo o lista, entre otras cosas.
+
+\subsection{Ciclo while}
+Un ciclo \textbf{while} es un ciclo tal que se ejecutará siempre y cuando su condición sea verdadera, es decir, un ciclo while con condición 5\textgreater 4 puede ser infinito solo hasta que 5 no sea mayor a 4. Debe de existir un contador o variable que logre hacer que este ciclo termine, ya que sin este, el ciclo será infinito.
+\begin{lstlisting}
+    while (condición){
+        //Código
+        //Contador de salida
+    }
+\end{lstlisting}
+Un \textbf{contador} es una variable que va adquiriendo valor uno más uno, suele ser utilizado en este tipo de ciclos para darles fin o para desplegarlos dentro del mismo ciclo, pero también son usados en los ciclos for, do-while u otras circunstancias. Podemos combinar los contadores con las operadores de incremento.\begin{center}\textit{int contador;\\contador=contador+1; //Forma de incrementar el contador\\contador++; //Forma de incrementar el contador con operadores de incremento;}\end{center}
+Un \textbf{acumulador} es una variable que va sumando valores distintos uno tras otro dentro de un ciclo u otra circunstancia, puede que sea un único valor o todos distintos, suele ser inicializada con valor igual a cero. Se pueden usar los operadores de asignación para hacer esta operación un poco más rápida.\begin{center}\textit{int acumulador;\\acumulador = acumulador + 5; //Forma de acumular\\acumulador = acumulador + 10\\acumulador += 5; //Forma de acumulador con operadores de asignación\\acumulador += 10;}\end{center}
+\begin{lstlisting}
+    int main()
+    {
+        int x = 0; //Variables
+        
+        while (x<10){ //Condicional, este ciclo imprime el contador que se esta evaluando hasta que sea 9, el contador va incrementando uno a uno, pero se puede modificar este incremento.
+            cout << "El contador vale " << x; //Código
+            x++; //Contador
+        }
+        
+        return 0;
+    }
+\end{lstlisting}
+
+\subsection{Ciclo for}
+El ciclo \textbf{for} es aquel que permite controlar mejor la cantidad de ciclos que este dará, siendo más preciso, dentro de su sintaxis, nos encontramos con que primero requiere de una variable con un valor que será evaluada, punto y coma después, la condición con la que se trabajará, punto y coma después, el control de incremento del ciclo; las llaves son obligatorias.
+\begin{lstlisting}
+    for (variable; condición; incremento){
+        //Codigo
+    }
+\end{lstlisting}
+La lógica de este ciclo es que, se lee la variable y su valor con la que trabajará el ciclo primero, después evalúa la condición para verificar que sea cierta, y ejecuta el bloque de código insertado dentro de las llaves, finalmente incrementa o decrementa la variable (pueden ser usados los operadores de incremento o asignación) y así sucesivamente hasta que la condición sea falsa.
+\begin{lstlisting}
+    for (int x = 0; x < 10; x++){
+        cout << x; //Imprime de 0 a 9 los valores de x, luego se sale del ciclo
+    }
+\end{lstlisting}
+
+\subsection{Ciclo do-while}
+A diferencia del ciclo \textit{while}, el ciclo \textbf{do-while} evalúa la condición que se le da al final del bloque de código con sus instrucciones, dando como resultado un ciclo en donde al menos una vez, se ejecuta su bloque de código, a diferencia de los otros dos, donde primero se evalúa y luego se ejecuta.
+\begin{lstlisting}
+    do {
+        //Código
+    } while (condición);
+\end{lstlisting}
+Aquí pasa como con el ciclo while, debe tener un contador que haga que el ciclo termine, si esta no existe, el ciclo será infinito.
+\begin{lstlisting}
+    int contador;
+    
+    do {
+        cout << "Esto es un ciclo do-while.";
+        contador++
+    } while (contador <= 15);
+\end{lstlisting}
+
+
+
+\section{Condicional switch}
+Como vimos previamente, podemos tener tantas condicionales y condicionales anidadas como queramos, pero esto puede causar gran volumen de código, para ello, existe una alternativa llamada la condicional \textbf{switch}, la cual evalúa un valor, condición o expresión y,  dentro de sus llaves, propone varios resultados para varias evaluaciones de esta variable, si ninguno de los resultados coincide con la evaluación dada, puede caer en un resultado por defecto. Sintaxis:
+\begin{lstlisting}
+    switch (expresión/condición){
+        case valor1:
+            instrucción(s);
+            break;
+        case valor2:
+            instrucción(s);
+            break;
+        ...
+        case valorN:
+            instrucción(s);
+            break;
+        default:
+            instrucción(s);
+    }
+\end{lstlisting}
+\textit{Nota}: todo \textbf{case} requiere que, después de todas las instrucciones que se le den, se ponga un \textbf{break;}, ya que la condicional \textit{switch} seguirá ejecutando los otros \textit{case} hasta que encuentre un \textit{break}. Esto no aplica para \textbf{default}, ya que este, por defecto, es el último case dentro de switch.
+\begin{lstlisting}
+    int x = 0;
+    switch (x) {
+        case 1:
+            cout << "Es uno";
+            break;
+        case 10:
+            cout << "Es diez";
+            break;
+        case 100:
+            cout << "Es cien";
+            break;
+        default:
+            cout "Es cero";
+    }
+\end{lstlisting}
+
+
+
+\section{Operadores lógicos}
+Los operadores lógicos usados para condicionales y ciclos son los siguientes:
+\begin{table}[ht]
+    \begin{center}
+        \caption{Operadores lógicos en C++}
+        \label{tab: 4}
+        \begin{tabular}{c c c}
+            \hline
+            \textbf{Operador}&\textbf{Nombre}&\textbf{Ejemplo} \\
+            \hline
+            \&\& & AND (y que) & x \&\& y \\
+            $\mid\mid$ & OR (o que) & x $\mid\mid$ y \\
+            ! & NOT (no es igual) & ! x \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+La forma en la que funciona la evaluación del operador lógico \textbf{AND} es similar a como interactúan los símbolos matemáticos de + y -:
+\begin{itemize}
+    \item falso y falso = \textbf{falso}
+    \item falso y verdadero = \textbf{falso}
+    \item verdadero y falso = \textbf{falso}
+    \item verdadero y verdadero = \textbf{verdadero}
+\end{itemize}
+Este operador tiene este comportamiento especial, el operador \textbf{OR} debe tener solamente un valor \textbf{verdadero} para que toda la evaluación resulte en verdadera.
+
+\subsection{Operador ternario}
+El \textbf{operador ternario} es un tipo de operador especial que evalúa una comparación y, si la expresión o variable del lado izquierdo del operador es verdadera, regresa dicha expresión, sino, regresa la expresión o variable de lado derecho. Es un operador sencillo que reduce a una línea de código una condicional.
+\begin{lstlisting}
+    #include <iostream>
+    using namespace std;
+    
+    int main(){
+        int a, b;
+        string m; //Declaración de variables
+        cin >> a >> b; //Asignación de valores a las variables
+        m = a > b ? " a es mayor" : "a es menor"; //Evalúa a > b; si a es mayor, a m se le asigna una cadena, sino, se le asigna otra
+        cout << m << "\n";
+    }
+\end{lstlisting}

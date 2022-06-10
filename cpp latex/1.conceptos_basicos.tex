@@ -1,0 +1,189 @@
+\section{Conceptos básicos}
+C++ es un famoso lenguaje de programación multi-plataforma para crear aplicaciones tales como sistemas operativos, navegadores, videojuegos, aplicaciones de ciencia o arte, etcétera. Algunas de las nociones más básicas de este lenguaje son:
+\begin{itemize}
+    \item Para terminar una instrucción en C++, se utiliza el \textbf{;}.
+    \item \textbf{main()} es la función principal de C++, es la primer función que se ejecuta al abrir la aplicación o programa.
+    \begin{lstlisting}
+        int main()
+        {
+            //Codigo aqui...
+            return 0;
+        }
+    \end{lstlisting}
+    \item \textbf{cout} es el comando de despliegue de información de C++. Para decirle a cout que despliegue algo, se usan los símbolos \textbf{$<<$} y lo que se quiera desplegar, en el caso de querer mostrar alguna variable numérica, no es necesario convertirla a texto. Pueden ponerse varios \textless\textless uno tras otro para concatenar cadenas de texto.
+    \begin{center}
+        \textit{cout $<<$ "Mensaje" o variable;\\
+                cout $<<$ "Mensaje" $<<$ "Mensajee" $<<$ "Mensajeee";}
+    \end{center}
+    \item \textbf{cin} es el comando de entrada de datos de C++, se utiliza igual que \textit{cout}, es decir, utilizando los dos \textbf{$>>$} seguido de a qué variable le asignaremos un valor. Al igual que \textit{cout}, podemos realizar varias asignaciones de valores en la misma línea \textit{cin}.
+    \begin{center}
+        \textit{cin $>>$ variable;\\
+                cin $>>$ a $>>$ b;}
+    \end{center}
+    \item Para dar un salto de línea en C++, se usa el comando \textbf{endl} o el comando de escape (escape character) \textbf{\textbackslash n}.
+\end{itemize}
+\textit{Nota}: para asignar o desplegar un valor, previamente debe existir la variable o que tenga un valor inicializado.
+\begin{lstlisting}
+    int main()
+    {
+        cout << "Hola mundo"; \\Esto imprime el mítico mensaje
+        cout << "Hola mundo\nTe saludo"; \\Esto imprime dos mensajes separados por un salto de linea hecho con \n
+        cout << "Hola mundo" << endl << "Te saludo"; \\Esto imprime dos mensajes separados por un salto de linea hecho con endl
+    }
+\end{lstlisting}
+
+
+
+\section{Cabeceras y librerías}
+C++ puede utilizar varias cabeceras para volver más rico el ambiente de código, el que viene por defecto suele ser \textbf{$<$iostream$>$}, para agregar más cabeceras al programa se utiliza la palabra reservada \textbf{\#include}.\begin{center}\textit{\#include $<$iostream$>$;}\end{center}
+Los \textbf{namespaces} son librerías que dan un plus para incluir más objetos y darle más alcance a los identificadores dentro del código, el namespace que siempre aparece o que es usualmente utilizado es \textbf{std}, se usa las palabras reservadas \textbf{using namespace}.\begin{center}\textit{using namespace std;}\end{center}
+\textit{Nota}: estas cabeceras y librerías se escriben antes de \textit{main()}.
+
+
+
+\section{Comentarios}
+Los comentarios en los lenguajes de programación son utilizados para explicar lo que el programa y código hacen, el compilador simplemente ignora el inicio de un comentario hasta que se hace un salto de línea. Al igual que en C\#, C++ realiza comentarios para una sola línea con las \textbf{\textbackslash\textbackslash}, si quieres encerrar un bloque de varias líneas, al comienzo de este bloque, escribes: \textbf{\textbackslash*}, y al final: \textbf{*\textbackslash}, esto encierra varias líneas de código y las convierte en comentarios.
+\begin{lstlisting}
+    int main()
+    {
+        cout << "Hola mundo"; \\Esto imprime el mítico mensaje
+        cout << "Hola mundo";
+        /*cout << "Hola mundo";
+        cout << "Hola mundo";
+        cout << "Hola mundo";
+        cout << "Hola mundo";*/ // Todo esto es ignorado
+    }
+\end{lstlisting}
+
+
+
+\section{Variables}
+Una variable es un espacio reservado de memoria en la cual uno almacena información, C++ requiere que le indiques el tipo de dato que almacenará la variable, al mismo tiempo que le des un nombre identificatorio significativo, ya que en este lenguaje hay variables, funciones, arreglos, módulos y clases que también deben tener un nombre identificatorio significativo, una vez que lo declares, no tienes que hacerlo cada que quieras usar la variable. En esa misma línea donde estás creando una variable, puedes darle un valor (inicializarla) o dejarla vacía (sin inicializar), por último, podemos crear e inicializar varias variables del mismo tipo en la misma línea.
+\begin{center}
+    \textit{[tipo de dato] [nombre identificatorio];}\\
+    \textit{[tipo de dato] [nombre identificatorio] = [valor de inicio];}\\
+    \textit{[tipo de dato] [nombre identificatorio], [nombre identificatorio], ..., [nombre identificatorio];}
+\end{center}
+Las variables pueden usarse para operaciones de texto (string, char) o para operaciones aritméticas (int, float)
+\begin{lstlisting}
+    int main()
+    {
+        int a;
+        int b = 42;
+        
+        int sum = a + b;
+        cout << sum
+    }
+\end{lstlisting}
+La palabra reservada \textbf{auto} permite crear variables y que automáticamente se declare el tipo de dato que le corresponde a dicha variable, con esto, dejamos que C++ le asigne el tipo de dato a nuestras variables dependiendo únicamente del valor que se le dé por primera vez (inicializado), si declaramos una variable como auto y le damos un valor después de esta línea de declaración, ocurrirá un error de sintaxis.
+\begin{center}
+    \textit{auto a = 5}; //Variable del tipo entero, está bien\\
+    \textit{auto b = 5.1}; //Variable del tipo float, está bien\\
+    \textit{auto a = "hola"}; //Variable del tipo string, está bien\\
+    \textit{auto a}; //Variable del tipo auto\\
+    \textit{a = 5}; //Esto no está bien
+\end{center}
+
+\subsection{Reglas para nombrar variables}
+Para administrar mejor el nombre de las variables se pueden seguir los siguientes consejos:
+\begin{itemize}
+    \item Ponerle una letra mayúscula o un guión bajo (\_).
+    \item Ponerle un nombre significativo que se pueda recordar fácilmente.
+    \item No se permiten caracteres especiales o espacios en blanco.
+    \item No se permiten palabras reservados como nombres de variables.
+    \item C++ distingue entre mayúsculas y minúsculas, para tener cuidado nombrando así las variables.
+\end{itemize}
+
+
+
+\section{Aritmética básica}
+Con las variables matemáticas se pueden realizar diversas operaciones aritméticas:
+\begin{table}[ht]
+    \begin{center}
+        \caption{Operadores aceptados en C++}
+        \label{tab: 1}
+        \begin{tabular}{c c c}
+            \hline
+            \textbf{Operador}&\textbf{Símbolo}&\textbf{Ejemplo} \\
+            \hline
+            Adición&+&x + y \\
+            Sustracción&-&x - y \\
+            Multiplicación&*& x * y \\
+            División&/& x / y \\
+            Modulo&\%& x \% y \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+\textit{Nota}: dividir entre 0 causa un error en el programa.\\
+Como bien se sabe, la operación módulo (\%) es usada para conocer el residuo de una división (el módulo de 25/5 es 0 porque esa es una división exacta, el módulo de 50/26 es 24 porque 26 cabe solo una vez y restan 24 unidades).
+\begin{lstlisting}
+    int x = 50, y = 26, res;
+    res = x % y;
+    cout << res; //Imprime 24
+\end{lstlisting}
+La prioridad de operaciones u operadores también está presente en la aritmética de C++:
+\begin{table}[ht]
+    \begin{center}
+        \caption{Prioridad de operaciones}
+        \label{tab: 2}
+        \begin{tabular}{c c c}
+            \hline
+            \textbf{Nivel de prioridad}&\textbf{Operaciones}&\textbf{Dirección de ejecución} \\
+            \hline
+            1&(), [], \{\}, ., -$>$&Izquierda a derecha \\
+            2&*, /, \%&Izquierda a derecha \\
+            3&+, -&Izquierda a derecha \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+
+
+\section{Asignación e incremento en variables}
+Ya hemos visto como se le asignan o se inicializa una variable, pero cabe recalcar y aclarar que el símbolo \textbf{=} asigna lo que esté a la derecha de este al lado izquierdo (int a = 5, ahora a vale 5), pero en ocasiones, requeriremos que a una variable se le asigne lo que esta vale actualmente, más otro valor, para ello podríamos hacer lo siguiente:
+\begin{lstlisting}
+    int main()
+    {
+        int x = 20;
+        x = x + 12;
+        cout << x; //Con esto, primer x vale 20, luego se le asigna lo que vale (20) mas 12, dando como resultado al final 32
+        return 0;
+    }
+\end{lstlisting}
+Sin embargo, podemos utilizar los \textbf{operadores de asignación}, que son un acceso rápido a la operación x = x + n que utilizamos anteriormente, para utilizarlos usamos el comando \textbf{+=} (es igual a x = x + n;) o \textbf{-=} (es igual a x = x - n;), estos mismos accesos directos aplican para los otros operadores de multiplicación, división y módulo.
+\begin{lstlisting}
+    int main()
+    {
+        int x = 5;
+        x += 5; //Equivalente a x = x + 5
+        x -= 2; //Equivalente a x = x -2
+        x *= 10; //Equivalente a x = x * 10
+        x /= 1; //Equivalente a x = x / 1
+        x %= 2; //Equivalente a x = x % 2
+        return 0;
+    }
+\end{lstlisting}
+Otro punto a destacar es la existencia de los \textbf{operadores de incremento}, usualmente utilizados en ciclos, a diferencia de los operadores de asignación, estos solo pueden incrementar o decrementar  una unidad.\\
+Estos operadores de incremento poseen una característica, y es que pueden ser de cierto tipo:
+\begin{itemize}
+    \item \textbf{Prefijo}: van dos \textbf{--} o \textbf{++} antes del nombre de la variable. El tipo prefijo incrementa el valor de la variable, luego continúa con el código o la expresión donde se esté trabajando.
+    \item \textbf{Posfijo}: van dos \textbf{--} o \textbf{++} después del nombre de la variable. El tipo posfijo evalúa todo el código o expresión, luego incrementa la variable.
+\end{itemize}
+\begin{lstlisting}
+    int main()
+    {
+        int x = 5, y;
+        y = ++x;
+        cout << y; //x vale 5 inicialmente, en su siguiente linea, x incrementa mas uno su valor y finalmente se le asigna a y su valor. Resultado: y = 6, x = 6
+        
+        int a = 6, b;
+        b = a++;
+        cout << b; //a vale 6 inicialmente, en su siguiente linea, b se le es asignado lo que vale a, luego esta incrementa mas uno su valor. Resultado: a = 7, b = 6
+        
+        return 0;
+    }
+\end{lstlisting}
+\textit{Nota}: este tipo de operadores suelen verse en ciclos, para esos casos, el ciclo puede dar una primera vuelta, luego el valor del contador que este posee incrementa, o primero incrementa el valor del contador, luego se da la primer vuelta al ciclo.
+
