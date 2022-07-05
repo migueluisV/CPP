@@ -29,5 +29,4 @@ int main()
         std::cout << "Introduzca calificacion (S para terminar): "; //Introduce los siguientes valores
     }
     std::cout << "La calificación mayor es: " << calir_mayor << "\n";
-    std::cout << "aaa";
 }
