@@ -143,9 +143,6 @@
     <ClCompile Include="P-Anios, Meses, Semanas, Dias.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="DiasYMeses.h" />
     <ClInclude Include="P-Anios, Meses, Semanas, Dias.h" />
   </ItemGroup>
